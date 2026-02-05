@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { CheckCircle2, Rocket } from 'lucide-react';
-import { ViewState } from '../App';
+import { ViewState } from '../types';
 
 interface AboutProps {
   setView: (view: ViewState) => void;

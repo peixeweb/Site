@@ -17,19 +17,6 @@
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Import Map for Gemini API -->
-    <script type="importmap">
-{
-  "imports": {
-    "@google/genai": "https://esm.sh/@google/genai@^1.39.0",
-    "react": "https://esm.sh/react@^19.2.4",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.563.0"
-  }
-}
-</script>
-
     <style>
       body {
         font-family: 'Inter', sans-serif;
@@ -69,6 +56,17 @@
         background: #555;
       }
     </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0"
+  }
+}
+</script>
 </head>
 <body class="selection:bg-yellow-500 selection:text-black">
 
@@ -251,8 +249,8 @@
                                     <p class="text-lg font-bold text-slate-700">UTILIZAR AS FERRAMENTAS MAIS ATUAIS, incluindo Inteligência Artificial para otimizar conversões.</p>
                                 </div>
                             </div>
-                            <a href="#pricing" class="mt-8 inline-block bg-[#28a745] text-white px-8 py-4 rounded-xl font-black uppercase text-center hover:scale-105 transition-all">
-                                Quero me inscrever agora
+                            <a href="#pricing" class="mt-8 inline-block bg-[#28a745] text-white px-8 py-4 rounded-xl font-black uppercase text-center hover:scale-105 transition-all shadow-lg shadow-green-500/30">
+                                Quero uma Análise Gratuita
                             </a>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
@@ -300,69 +298,6 @@
                             <div class="flex items-center gap-3">
                                 <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center font-bold text-black">D</div>
                                 <p class="font-bold text-white">David G.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div class="bg-white rounded-xl overflow-hidden p-2"><img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&q=80&w=2070" alt="Result 1" class="rounded-lg" /></div>
-                        <div class="bg-white rounded-xl overflow-hidden p-2"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070" alt="Result 2" class="rounded-lg" /></div>
-                        <div class="bg-white rounded-xl overflow-hidden p-2"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426" alt="Result 3" class="rounded-lg" /></div>
-                        <div class="bg-white rounded-xl overflow-hidden p-2"><img src="https://images.unsplash.com/photo-1553484771-047a44eee27b?auto=format&fit=crop&q=80&w=2070" alt="Result 4" class="rounded-lg" /></div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- AI IMAGE LAB -->
-            <section class="py-24 bg-white text-black">
-                <div class="container mx-auto px-6">
-                    <div class="max-w-4xl mx-auto">
-                        <div class="text-center mb-12">
-                            <span class="text-cyan-500 font-bold tracking-widest uppercase text-sm mb-4 block">Tecnologia Peixeweb</span>
-                            <h2 class="text-3xl md:text-5xl font-extrabold text-[#001B3D] mb-4">Creative <span class="text-cyan-500">AI Lab</span></h2>
-                            <p className="text-slate-600">Demonstração da nossa expertise em IA: Remova objetos indesejados de suas fotos em segundos.</p>
-                        </div>
-
-                        <div class="bg-slate-50 border border-slate-200 rounded-[32px] overflow-hidden shadow-xl">
-                            <div class="p-8 md:p-12">
-                                <div class="grid md:grid-cols-2 gap-8">
-                                    <div class="space-y-4">
-                                        <div id="upload-container" class="aspect-square bg-slate-200 rounded-2xl flex flex-col items-center justify-center relative overflow-hidden border-2 border-dashed border-slate-300">
-                                            <i data-lucide="image" class="w-12 h-12 text-slate-400 mb-4"></i>
-                                            <p class="text-slate-500 font-medium">Faça upload da foto</p>
-                                            <img id="preview-image" class="absolute inset-0 w-full h-full object-cover hidden" />
-                                            <input type="file" id="image-upload" class="absolute inset-0 opacity-0 cursor-pointer" accept="image/*" />
-                                        </div>
-                                        <div class="bg-white p-4 rounded-xl shadow-sm">
-                                            <label class="text-xs font-bold text-slate-500 uppercase block mb-2">Comando para a IA</label>
-                                            <div class="flex gap-2">
-                                                <input type="text" id="ai-prompt" value="Remova o copo de cerveja da foto" class="flex-1 bg-slate-50 border-none outline-none focus:ring-2 focus:ring-cyan-500 rounded-lg px-4 py-2 text-sm" placeholder="Ex: Remova o copo..." />
-                                                <button onclick="document.getElementById('ai-prompt').value=''" class="p-2 text-slate-400 hover:text-red-500 transition-colors"><i data-lucide="trash-2" class="w-5 h-5"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex flex-col">
-                                        <div id="result-container" class="aspect-square bg-[#001B3D] rounded-2xl flex flex-col items-center justify-center relative overflow-hidden">
-                                            <div id="loading-state" class="hidden text-center p-6">
-                                                <i data-lucide="loader-2" class="w-12 h-12 text-cyan-400 animate-spin mx-auto mb-4"></i>
-                                                <p class="text-white font-medium animate-pulse">Removendo distrações...</p>
-                                            </div>
-                                            <div id="initial-state" class="text-center p-6">
-                                                <i data-lucide="sparkles" class="w-12 h-12 text-slate-700 mb-4"></i>
-                                                <p class="text-slate-500 font-medium">O resultado aparecerá aqui</p>
-                                            </div>
-                                            <img id="result-image" class="w-full h-full object-cover hidden" />
-                                            <div id="error-state" class="hidden text-center p-6">
-                                                <p class="text-red-400 text-sm mb-2">Erro ao processar imagem.</p>
-                                            </div>
-                                        </div>
-                                        <button id="process-btn" class="mt-4 w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all bg-slate-300 text-slate-500 cursor-not-allowed" disabled>
-                                            <i data-lucide="wand-2" class="w-5 h-5"></i>
-                                            Aplicar Mágica de IA
-                                        </button>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -418,38 +353,48 @@
 
             <!-- PRICING -->
             <section id="pricing" class="py-24 bg-white text-black">
-                <div class="container mx-auto px-6 max-w-4xl text-center">
-                    <h2 class="text-3xl md:text-5xl font-black mb-12">FAÇA SUA INSCRIÇÃO AGORA:</h2>
+                <div class="container mx-auto px-6 max-w-5xl text-center">
+                    <h2 class="text-3xl md:text-5xl font-black mb-6">PRONTO PARA ESCALAR?</h2>
+                    <p className="text-xl text-slate-600 mb-12 max-w-2xl mx-auto">
+                        Não acreditamos em pacotes genéricos. Cada negócio tem um desafio único e merece uma estratégia personalizada.
+                    </p>
                     
-                    <div class="bg-[#111] text-white rounded-[40px] p-8 md:p-16 border-4 border-yellow-500 shadow-2xl relative overflow-hidden">
-                        <div class="absolute top-0 right-0 bg-yellow-500 text-black font-black px-6 py-2 rounded-bl-3xl uppercase text-xs tracking-widest">Oferta Limitada</div>
-                        
-                        <div class="mb-12">
-                            <p class="text-slate-500 line-through text-2xl font-bold mb-2 uppercase">De: R$ 2.500,00</p>
-                            <p class="text-yellow-500 font-black text-lg mb-4 uppercase">Por apenas:</p>
-                            <div class="flex flex-col md:flex-row items-center justify-center gap-2">
-                                <span class="text-3xl font-bold">12x de</span>
-                                <span class="text-6xl md:text-8xl font-black text-white">R$ 129,45</span>
+                    <div class="bg-[#111] text-white rounded-[40px] p-8 md:p-12 border-4 border-yellow-500 shadow-2xl relative overflow-hidden">
+                         <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <div class="text-left space-y-6">
+                                <h3 class="text-2xl font-bold text-yellow-500 uppercase tracking-wide">O que vamos fazer:</h3>
+                                <ul class="space-y-5">
+                                    <li class="flex items-center gap-4">
+                                        <i data-lucide="check-circle-2" class="text-yellow-500 shrink-0 w-6 h-6"></i>
+                                        <span class="font-medium text-lg">Análise profunda do seu negócio</span>
+                                    </li>
+                                    <li class="flex items-center gap-4">
+                                        <i data-lucide="check-circle-2" class="text-yellow-500 shrink-0 w-6 h-6"></i>
+                                        <span class="font-medium text-lg">Definição de canais de tráfego</span>
+                                    </li>
+                                    <li class="flex items-center gap-4">
+                                        <i data-lucide="check-circle-2" class="text-yellow-500 shrink-0 w-6 h-6"></i>
+                                        <span class="font-medium text-lg">Planejamento de investimento</span>
+                                    </li>
+                                    <li class="flex items-center gap-4">
+                                        <i data-lucide="check-circle-2" class="text-yellow-500 shrink-0 w-6 h-6"></i>
+                                        <span class="font-medium text-lg">Projeção de resultados reais</span>
+                                    </li>
+                                </ul>
                             </div>
-                            <p class="text-slate-400 mt-4 uppercase font-bold tracking-widest">Ou R$ 1.297,00 à vista</p>
-                        </div>
 
-                        <div class="grid md:grid-cols-2 gap-4 text-left mb-12 max-w-xl mx-auto">
-                            <div class="flex items-center gap-3"><i data-lucide="check" class="text-yellow-500 w-5 h-5"></i> <span>Consultoria Estratégica</span></div>
-                            <div class="flex items-center gap-3"><i data-lucide="check" class="text-yellow-500 w-5 h-5"></i> <span>Gestão de Google & Meta</span></div>
-                            <div class="flex items-center gap-3"><i data-lucide="check" class="text-yellow-500 w-5 h-5"></i> <span>Criação de Landing Page</span></div>
-                            <div class="flex items-center gap-3"><i data-lucide="check" class="text-yellow-500 w-5 h-5"></i> <span>Bônus: IA para Anúncios</span></div>
-                        </div>
-
-                        <a href="https://api.whatsapp.com/send?phone=5511914716715" class="block w-full bg-[#28a745] hover:bg-[#218838] py-6 rounded-2xl text-2xl font-black uppercase tracking-tight transform hover:scale-105 transition-all mb-8">
-                            Quero Me Inscrever Agora
-                        </a>
-
-                        <div class="flex items-center justify-center gap-4 border-t border-white/10 pt-8">
-                            <i data-lucide="shield-check" class="text-green-500 w-8 h-8"></i>
-                            <div class="text-left">
-                                <p class="font-bold uppercase leading-none">Garantia Incondicional</p>
-                                <p class="text-sm text-slate-500">7 dias para testar ou seu dinheiro de volta.</p>
+                            <div class="text-center md:text-left flex flex-col justify-center h-full">
+                                <p class="text-slate-300 mb-8 text-lg leading-relaxed">
+                                    Fale diretamente com um de nossos estrategistas e receba um plano de ação para os próximos 30 dias.
+                                </p>
+                                <a href="https://api.whatsapp.com/send?phone=5511914716715" target="_blank" class="block w-full bg-[#25D366] hover:bg-[#20bd5a] py-6 rounded-2xl text-xl font-black uppercase tracking-tight transform hover:scale-105 transition-all mb-6 flex items-center justify-center gap-3 shadow-lg shadow-green-900/20">
+                                    Solicitar Orçamento
+                                    <i data-lucide="arrow-right" class="w-6 h-6"></i>
+                                </a>
+                                <div class="flex items-center justify-center md:justify-start gap-2 text-sm text-slate-500">
+                                    <i data-lucide="shield-check" class="text-yellow-500 w-5 h-5"></i>
+                                    <span class="uppercase font-bold tracking-wider">Sem compromisso</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -689,116 +634,6 @@
         
         // Refresh icons after dynamic insert
         lucide.createIcons();
-    </script>
-
-    <!-- AI Module Script -->
-    <script type="module">
-        import { GoogleGenAI } from "@google/genai";
-
-        // IMPORTANT: In a real client-side app, you should not expose API keys directly.
-        // For this demo to work, user must have a key. 
-        // We will prompt for it or assume it's set if running in a specific env.
-        // For this output, we'll implement a simple prompt if missing.
-        
-        const fileInput = document.getElementById('image-upload');
-        const previewImage = document.getElementById('preview-image');
-        const processBtn = document.getElementById('process-btn');
-        const promptInput = document.getElementById('ai-prompt');
-        const resultImage = document.getElementById('result-image');
-        const loadingState = document.getElementById('loading-state');
-        const initialState = document.getElementById('initial-state');
-        const errorState = document.getElementById('error-state');
-
-        let base64Image = null;
-        let mimeType = '';
-
-        fileInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                mimeType = file.type;
-                const reader = new FileReader();
-                reader.onload = () => {
-                    previewImage.src = reader.result;
-                    previewImage.classList.remove('hidden');
-                    // Store raw base64 without prefix
-                    base64Image = reader.result.split(',')[1];
-                    
-                    // Enable button
-                    processBtn.disabled = false;
-                    processBtn.classList.remove('bg-slate-300', 'text-slate-500', 'cursor-not-allowed');
-                    processBtn.classList.add('bg-cyan-500', 'hover:bg-cyan-400', 'text-[#001B3D]', 'shadow-lg');
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-        
-        processBtn.addEventListener('click', async () => {
-            const prompt = document.getElementById('ai-prompt').value;
-            if (!base64Image) return;
-
-            // Simple UI state management
-            document.getElementById('initial-state').classList.add('hidden');
-            document.getElementById('result-image').classList.add('hidden');
-            document.getElementById('error-state').classList.add('hidden');
-            document.getElementById('loading-state').classList.remove('hidden');
-            processBtn.disabled = true;
-            processBtn.textContent = 'Processando...';
-
-            try {
-                // Check for API Key (Simple implementation for standalone HTML)
-                let apiKey = localStorage.getItem('GEMINI_API_KEY');
-                if (!apiKey) {
-                    apiKey = prompt("Por favor, insira sua API Key do Google Gemini para testar a demo:");
-                    if (apiKey) localStorage.setItem('GEMINI_API_KEY', apiKey);
-                    else throw new Error("API Key necessária");
-                }
-
-                const ai = new GoogleGenAI({ apiKey: apiKey });
-                
-                const response = await ai.models.generateContent({
-                    model: 'gemini-2.5-flash-image',
-                    contents: {
-                        parts: [
-                            {
-                                inlineData: {
-                                    data: base64Image,
-                                    mimeType: mimeType || 'image/png',
-                                },
-                            },
-                            {
-                                text: prompt,
-                            },
-                        ],
-                    },
-                });
-
-                let foundImage = false;
-                if (response.candidates?.[0]?.content?.parts) {
-                    for (const part of response.candidates[0].content.parts) {
-                        if (part.inlineData) {
-                            const resultSrc = `data:image/png;base64,${part.inlineData.data}`;
-                            const imgEl = document.getElementById('result-image');
-                            imgEl.src = resultSrc;
-                            imgEl.classList.remove('hidden');
-                            foundImage = true;
-                            break;
-                        }
-                    }
-                }
-
-                if (!foundImage) throw new Error("Nenhuma imagem gerada.");
-
-            } catch (err) {
-                console.error(err);
-                document.getElementById('error-state').classList.remove('hidden');
-                document.getElementById('error-state').querySelector('p').textContent = err.message || "Erro ao processar";
-            } finally {
-                document.getElementById('loading-state').classList.add('hidden');
-                processBtn.disabled = false;
-                processBtn.innerHTML = '<i data-lucide="wand-2" class="w-5 h-5"></i> Aplicar Mágica de IA';
-                lucide.createIcons();
-            }
-        });
     </script>
 </body>
 </html>

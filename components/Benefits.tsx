@@ -1,13 +1,13 @@
 
 import React from 'react';
-import { Target, TrendingUp, Zap, BarChart } from 'lucide-react';
+import { Zap } from 'lucide-react';
 
 const BenefitItem: React.FC<{ text: string }> = ({ text }) => (
   <div className="flex items-start gap-4 mb-6">
     <div className="mt-1 bg-yellow-500 rounded-full p-1 text-black">
       <Zap size={16} fill="currentColor" />
     </div>
-    <p className="text-lg font-bold text-slate-200">{text}</p>
+    <p className="text-lg font-bold text-slate-700">{text}</p>
   </div>
 );
 
@@ -26,8 +26,8 @@ const Benefits: React.FC = () => {
               <BenefitItem text="ACELERAR O CRESCIMENTO DA EMPRESA sem medo de desperdiçar orçamento com cliques vazios." />
               <BenefitItem text="UTILIZAR AS FERRAMENTAS MAIS ATUAIS, incluindo Inteligência Artificial para otimizar conversões." />
             </div>
-            <a href="#pricing" className="mt-8 inline-block bg-[#28a745] text-white px-8 py-4 rounded-xl font-black uppercase text-center hover:scale-105 transition-all">
-              Quero me inscrever agora
+            <a href="#pricing" className="mt-8 inline-block bg-[#28a745] text-white px-8 py-4 rounded-xl font-black uppercase text-center hover:scale-105 transition-all shadow-lg shadow-green-500/30">
+              Quero uma Análise Gratuita
             </a>
           </div>
           <div className="grid grid-cols-2 gap-4">

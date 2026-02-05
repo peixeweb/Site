@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { TrendingUp, Instagram, Layout, Search, ArrowRight, CheckCircle2, ShoppingCart, Globe, ArrowLeft } from 'lucide-react';
-import { ViewState } from '../App';
+import { ViewState } from '../types';
 
 interface DetailedServicesProps {
   setView: (view: ViewState) => void;

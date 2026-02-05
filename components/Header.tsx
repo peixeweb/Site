@@ -1,10 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { ViewState } from '../types';
 
 interface HeaderProps {
-  setView: (view: any) => void;
-  currentView: string;
+  setView: (view: ViewState) => void;
+  currentView: ViewState;
 }
 
 const Header: React.FC<HeaderProps> = ({ setView, currentView }) => {

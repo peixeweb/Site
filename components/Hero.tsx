@@ -1,8 +1,9 @@
 
 import React from 'react';
 import { CheckCircle } from 'lucide-react';
+import { ViewState } from '../types';
 
-const Hero: React.FC<{ setView: any }> = () => {
+const Hero: React.FC<{ setView: (view: ViewState) => void }> = () => {
   return (
     <section id="home" className="relative pt-32 pb-20 bg-black overflow-hidden border-b border-white/5">
       <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">

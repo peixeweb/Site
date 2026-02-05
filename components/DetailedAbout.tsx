@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { Target, Users, ShieldCheck, Zap, ArrowRight, Rocket, Fish, ArrowLeft } from 'lucide-react';
-import { ViewState } from '../App';
+import { Target, Users, ShieldCheck, Zap, Rocket, Fish, ArrowLeft } from 'lucide-react';
+import { ViewState } from '../types';
 
 interface DetailedAboutProps {
   setView: (view: ViewState) => void;

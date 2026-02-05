@@ -8,15 +8,12 @@ import Proof from './components/Proof';
 import Pricing from './components/Pricing';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
-import AIImageLab from './components/AIImageLab';
 // Import missing components to handle view transitions
 import DetailedServices from './components/DetailedServices';
 import DetailedAbout from './components/DetailedAbout';
 import About from './components/About';
 import { MessageCircle } from 'lucide-react';
-
-// Fix: Export ViewState type to resolve "missing member" errors in subcomponents
-export type ViewState = 'home' | 'sobre' | 'servicos' | 'resultados' | 'pricing';
+import { ViewState } from './types';
 
 const App: React.FC = () => {
   // Fix: Track the active view in state
@@ -45,7 +42,6 @@ const App: React.FC = () => {
             
             {/* DESEJO (Resultados e Tecnologia) */}
             <Proof />
-            <AIImageLab />
             <Modules />
             
             {/* AÇÃO */}
