@@ -70,33 +70,34 @@
 }
 </script>
 </head>
-<body class="selection:bg-yellow-500 selection:text-black">
+<body class="selection:bg-cyan-500 selection:text-white">
 
     <!-- HEADER -->
-    <header id="main-header" class="fixed w-full top-0 z-50 transition-all duration-500 bg-white/90 py-3">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <!-- Logo -->
-            <a href="#" onclick="navigateTo('home'); return false;" class="flex items-center group">
+    <header id="main-header" class="fixed w-full top-0 z-50 transition-all duration-500 bg-white/95 py-4 backdrop-blur-md border-b border-slate-100">
+        <div class="container mx-auto px-6 flex flex-col items-center relative">
+            <!-- Logo Centralizado e Aumentado -->
+            <a href="#" onclick="navigateTo('home'); return false;" class="flex items-center justify-center mb-4 lg:mb-2 group transition-all duration-300">
                 <img 
+                    id="header-logo"
                     src="https://lh3.googleusercontent.com/d/1UCMSOadfQEJ0-xsTNdVct6AMCkt-D3yr" 
                     alt="Peixeweb Logo" 
-                    class="h-20 md:h-24 w-auto transition-all duration-500 group-hover:scale-105"
+                    class="h-32 md:h-40 w-auto transition-all duration-500 group-hover:scale-105"
                 />
             </a>
 
-            <!-- Desktop Nav -->
+            <!-- Desktop Nav Centralizada Abaixo -->
             <nav class="hidden lg:flex items-center gap-10">
-                <a href="#beneficios" onclick="handleNavClick(event, 'home', 'beneficios')" class="text-black hover:text-yellow-600 font-black transition-colors text-xs uppercase tracking-[0.2em]">Benefícios</a>
-                <a href="#servicos" onclick="handleNavClick(event, 'home', 'servicos-section')" class="text-black hover:text-yellow-600 font-black transition-colors text-xs uppercase tracking-[0.2em]">Serviços</a>
-                <a href="#resultados" onclick="handleNavClick(event, 'home', 'resultados')" class="text-black hover:text-yellow-600 font-black transition-colors text-xs uppercase tracking-[0.2em]">Resultados</a>
-                <a href="#pricing" onclick="handleNavClick(event, 'home', 'pricing')" class="text-black hover:text-yellow-600 font-black transition-colors text-xs uppercase tracking-[0.2em]">Orçamento</a>
-                <a href="https://api.whatsapp.com/send?phone=5511914716715" target="_blank" class="bg-black text-white font-black px-8 py-3 rounded-xl text-xs uppercase tracking-widest hover:bg-yellow-500 hover:text-black transition-all transform hover:-translate-y-1">
+                <a href="#beneficios" onclick="handleNavClick(event, 'home', 'beneficios')" class="text-[#001B3D] hover:text-cyan-600 font-bold transition-colors text-xs uppercase tracking-[0.2em]">Benefícios</a>
+                <a href="#servicos" onclick="handleNavClick(event, 'home', 'servicos-section')" class="text-[#001B3D] hover:text-cyan-600 font-bold transition-colors text-xs uppercase tracking-[0.2em]">Serviços</a>
+                <a href="#resultados" onclick="handleNavClick(event, 'home', 'resultados')" class="text-[#001B3D] hover:text-cyan-600 font-bold transition-colors text-xs uppercase tracking-[0.2em]">Resultados</a>
+                <a href="#pricing" onclick="handleNavClick(event, 'home', 'pricing')" class="text-[#001B3D] hover:text-cyan-600 font-bold transition-colors text-xs uppercase tracking-[0.2em]">Orçamento</a>
+                <a href="https://api.whatsapp.com/send?phone=5511914716715" target="_blank" class="bg-[#001B3D] text-white font-black px-8 py-3 rounded-xl text-xs uppercase tracking-widest hover:bg-cyan-500 hover:text-white transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-cyan-500/20">
                     Falar no Whats
                 </a>
             </nav>
 
-            <!-- Mobile Menu Button -->
-            <button class="lg:hidden text-black p-2" onclick="toggleMenu()">
+            <!-- Mobile Menu Button Absoluto -->
+            <button class="lg:hidden absolute right-6 top-8 text-[#001B3D] p-2 hover:bg-slate-100 rounded-lg transition-colors" onclick="toggleMenu()">
                 <i data-lucide="menu" id="menu-icon" class="w-8 h-8"></i>
             </button>
         </div>
@@ -104,10 +105,10 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="lg:hidden absolute top-full left-0 w-full bg-white transition-all duration-300 ease-in-out overflow-hidden max-h-0 opacity-0 shadow-2xl border-t border-slate-100">
             <nav class="flex flex-col items-center gap-8 py-10">
-                <a href="#beneficios" onclick="handleNavClick(event, 'home', 'beneficios'); toggleMenu()" class="text-black font-black uppercase tracking-widest text-lg hover:text-yellow-500 transition-colors">Benefícios</a>
-                <a href="#servicos" onclick="handleNavClick(event, 'home', 'servicos-section'); toggleMenu()" class="text-black font-black uppercase tracking-widest text-lg hover:text-yellow-500 transition-colors">Serviços</a>
-                <a href="#resultados" onclick="handleNavClick(event, 'home', 'resultados'); toggleMenu()" class="text-black font-black uppercase tracking-widest text-lg hover:text-yellow-500 transition-colors">Resultados</a>
-                <a href="#pricing" onclick="handleNavClick(event, 'home', 'pricing'); toggleMenu()" class="text-black font-black uppercase tracking-widest text-lg hover:text-yellow-500 transition-colors">Orçamento</a>
+                <a href="#beneficios" onclick="handleNavClick(event, 'home', 'beneficios'); toggleMenu()" class="text-[#001B3D] font-black uppercase tracking-widest text-lg hover:text-cyan-500 transition-colors">Benefícios</a>
+                <a href="#servicos" onclick="handleNavClick(event, 'home', 'servicos-section'); toggleMenu()" class="text-[#001B3D] font-black uppercase tracking-widest text-lg hover:text-cyan-500 transition-colors">Serviços</a>
+                <a href="#resultados" onclick="handleNavClick(event, 'home', 'resultados'); toggleMenu()" class="text-[#001B3D] font-black uppercase tracking-widest text-lg hover:text-cyan-500 transition-colors">Resultados</a>
+                <a href="#pricing" onclick="handleNavClick(event, 'home', 'pricing'); toggleMenu()" class="text-[#001B3D] font-black uppercase tracking-widest text-lg hover:text-cyan-500 transition-colors">Orçamento</a>
                 <a href="https://api.whatsapp.com/send?phone=5511914716715" target="_blank" class="bg-green-500 text-white font-black px-10 py-4 rounded-2xl text-sm uppercase tracking-widest shadow-lg">
                     WhatsApp Direto
                 </a>
@@ -121,27 +122,58 @@
         <div id="view-home" class="view-section">
             
             <!-- HERO -->
-            <section id="home" class="relative pt-40 pb-24 bg-black overflow-hidden border-b border-white/5">
-                <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-                    <div class="z-10 text-center lg:text-left">
-                        <div class="inline-block py-2 px-4 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-500 text-xs font-black uppercase tracking-[0.3em] mb-8">
+            <!-- Adjusted PT (increased to clear bigger header) and PB (kept small) -->
+            <section id="home" class="relative pt-44 md:pt-52 pb-8 bg-black overflow-hidden border-b border-white/5">
+                
+                <!-- Background Images Layer -->
+                <div class="absolute inset-0 z-0 pointer-events-none select-none">
+                    <!-- Imagem Google Ads / Analytics (Esquerda) -->
+                    <img 
+                      src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070" 
+                      alt="Google Ads Analytics" 
+                      class="absolute top-0 left-0 w-2/3 h-full object-cover opacity-[0.08] mix-blend-luminosity -translate-x-1/4 rotate-3"
+                    />
+                    
+                    <!-- Imagem Meta Ads / Mobile (Direita) -->
+                    <img 
+                      src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&q=80&w=1974" 
+                      alt="Meta Ads Interface" 
+                      class="absolute top-0 right-0 w-2/3 h-full object-cover opacity-[0.08] mix-blend-luminosity translate-x-1/4 -rotate-3"
+                    />
+
+                    <!-- Gradientes de Fusão para manter o fundo preto predominante -->
+                    <div class="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black"></div>
+                </div>
+
+                <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+                    <div class="text-center lg:text-left">
+                        <div class="inline-block py-2 px-4 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-black uppercase tracking-[0.3em] mb-8 animate-pulse">
                             Agência Especialista em Escala
                         </div>
                         <h1 class="text-4xl md:text-5xl lg:text-7xl font-black font-montserrat text-white leading-[1.1] mb-8">
-                            A Única <span class="text-yellow-500">Agência de Tráfego</span> que escala seu lucro.
+                            A Única <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Agência de Tráfego</span> que escala seu lucro.
                         </h1>
-                        <p class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed font-light max-w-xl">
-                            Não gaste dinheiro com "testes". Use a estratégia que já faturou milhões para nossos clientes e transforme cliques em lucro real.
-                        </p>
+                        <div class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed font-light max-w-xl mx-auto lg:mx-0">
+                            <p>Não gaste dinheiro com "testes". Use a estratégia que vai trazer clientes e transforme cliques em lucro real.</p>
+                            
+                            <!-- Texto de Destaque Adicionado -->
+                            <div class="mt-6 p-4 bg-cyan-900/20 border-l-4 border-cyan-500 rounded-r-xl text-left backdrop-blur-sm">
+                                <p class="text-white font-bold text-xl md:text-2xl leading-tight">
+                                    Você precisa de mais clientes? <br />
+                                    <span class="text-cyan-400">Eu tenho mais clientes para te trazer!</span>
+                                </p>
+                            </div>
+                        </div>
                         
                         <div class="flex flex-col gap-5 mb-12">
-                            <div class="flex items-center gap-3 text-slate-300 justify-center lg:justify-start">
-                                <i data-lucide="check-circle" class="text-green-500 w-6 h-6"></i>
-                                <span class="font-medium">Estratégias Avançadas de Google & Meta Ads</span>
+                            <div class="flex items-center gap-3 text-slate-300 justify-center lg:justify-start group">
+                                <i data-lucide="check-circle" class="text-cyan-500 w-6 h-6 group-hover:text-cyan-300 transition-colors"></i>
+                                <span class="font-medium group-hover:text-white transition-colors">Estratégias Avançadas de Google & Meta Ads</span>
                             </div>
-                            <div class="flex items-center gap-3 text-slate-300 justify-center lg:justify-start">
-                                <i data-lucide="check-circle" class="text-green-500 w-6 h-6"></i>
-                                <span class="font-medium">Foco total em ROI e Conversão Validada</span>
+                            <div class="flex items-center gap-3 text-slate-300 justify-center lg:justify-start group">
+                                <i data-lucide="check-circle" class="text-cyan-500 w-6 h-6 group-hover:text-cyan-300 transition-colors"></i>
+                                <span class="font-medium group-hover:text-white transition-colors">Foco total em ROI e Conversão Validada</span>
                             </div>
                         </div>
 
@@ -154,13 +186,13 @@
                     </div>
 
                     <div class="relative group">
-                        <div class="absolute -inset-10 bg-yellow-500/20 blur-[120px] rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-1000"></div>
+                        <div class="absolute -inset-10 bg-cyan-500/20 blur-[120px] rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-1000"></div>
                         <div class="relative z-10 p-2 bg-white/5 rounded-[48px] backdrop-blur-sm border border-white/10">
                             <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=2426" alt="Especialistas analisando dados" class="rounded-[40px] grayscale group-hover:grayscale-0 transition-all duration-1000 shadow-2xl" />
                         </div>
                         <!-- Floating badge -->
-                        <div class="absolute -bottom-6 -left-6 z-20 bg-white p-6 rounded-3xl shadow-2xl hidden md:block animate-bounce-slow">
-                            <p class="text-black font-black text-2xl leading-none">+3 Anos</p>
+                        <div class="absolute -bottom-6 -left-6 z-20 bg-white p-6 rounded-3xl shadow-2xl hidden md:block animate-bounce-slow border-l-4 border-cyan-500">
+                            <p class="text-[#001B3D] font-black text-2xl leading-none">+3 Anos</p>
                             <p class="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1">De Experiência</p>
                         </div>
                     </div>
@@ -185,7 +217,7 @@
 
                 <div class="container mx-auto px-6 relative z-10">
                     <div class="max-w-4xl mx-auto text-center">
-                        <span class="text-cyan-500 font-bold tracking-widest uppercase text-sm mb-4 block">Quem Somos</span>
+                        <span class="text-cyan-600 font-bold tracking-widest uppercase text-sm mb-4 block">Quem Somos</span>
                         <h2 class="text-3xl md:text-5xl font-extrabold text-[#001B3D] mb-8 leading-tight">
                             Somos novos no mercado, mas experientes no <span class="text-cyan-500 underline decoration-cyan-500/30 underline-offset-8">sucesso do cliente.</span>
                         </h2>
@@ -194,14 +226,14 @@
                         </p>
 
                         <div class="grid md:grid-cols-2 gap-6 mb-12">
-                            <div class="flex gap-4 text-left bg-slate-50 p-6 rounded-2xl border border-slate-100 transition-all hover:shadow-md">
+                            <div class="flex gap-4 text-left bg-slate-50 p-6 rounded-2xl border border-slate-100 transition-all hover:shadow-lg hover:border-cyan-100 hover:-translate-y-1">
                                 <div class="mt-1 shrink-0"><i data-lucide="check-circle-2" class="text-cyan-500 w-6 h-6"></i></div>
                                 <div>
                                     <h4 class="font-bold text-[#001B3D] text-lg mb-1">Estratégia Sob Medida</h4>
                                     <p class="text-slate-600">Não acreditamos em fórmulas prontas. Cada negócio recebe uma análise profunda antes da execução.</p>
                                 </div>
                             </div>
-                            <div class="flex gap-4 text-left bg-slate-50 p-6 rounded-2xl border border-slate-100 transition-all hover:shadow-md">
+                            <div class="flex gap-4 text-left bg-slate-50 p-6 rounded-2xl border border-slate-100 transition-all hover:shadow-lg hover:border-cyan-100 hover:-translate-y-1">
                                 <div class="mt-1 shrink-0"><i data-lucide="check-circle-2" class="text-cyan-500 w-6 h-6"></i></div>
                                 <div>
                                     <h4 class="font-bold text-[#001B3D] text-lg mb-1">Transparência Total</h4>
@@ -211,7 +243,7 @@
                         </div>
                         
                         <div class="mt-12 space-x-6 flex flex-col md:flex-row justify-center items-center gap-4">
-                             <button onclick="navigateTo('view-sobre')" class="bg-[#001B3D] text-white font-bold px-8 py-4 rounded-xl hover:bg-[#003366] transition-all">
+                             <button onclick="navigateTo('view-sobre')" class="bg-[#001B3D] text-white font-bold px-8 py-4 rounded-xl hover:bg-cyan-600 transition-all shadow-lg hover:shadow-cyan-500/30">
                                Saiba mais sobre nós
                              </button>
                              <a href="https://fishweb.my.canva.site/peixeweb" target="_blank" class="inline-flex items-center gap-2 font-bold text-cyan-600 hover:text-cyan-700 transition-colors group text-lg">
@@ -230,24 +262,24 @@
                 <div class="container mx-auto px-6">
                     <div class="grid lg:grid-cols-2 gap-16 items-center">
                         <div>
-                            <h2 class="text-3xl md:text-5xl font-black mb-8 leading-tight">
-                                Com a <span class="text-yellow-600">Peixeweb</span> você será capaz de:
+                            <h2 class="text-3xl md:text-5xl font-black mb-8 leading-tight text-[#001B3D]">
+                                Com a <span class="text-cyan-500">Peixeweb</span> você será capaz de:
                             </h2>
-                            <div class="space-y-2">
-                                <div class="flex items-start gap-4 mb-6">
-                                    <div class="mt-1 bg-yellow-500 rounded-full p-1 text-black"><i data-lucide="zap" class="w-4 h-4"></i></div>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4 mb-6 p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                                    <div class="mt-1 bg-cyan-100 text-cyan-700 rounded-full p-2"><i data-lucide="zap" class="w-5 h-5"></i></div>
                                     <p class="text-lg font-bold text-slate-700">CRIAR CAMPANHAS DO JEITO CERTO, passo a passo, atraindo os melhores clientes para seu negócio.</p>
                                 </div>
-                                <div class="flex items-start gap-4 mb-6">
-                                    <div class="mt-1 bg-yellow-500 rounded-full p-1 text-black"><i data-lucide="zap" class="w-4 h-4"></i></div>
+                                <div class="flex items-start gap-4 mb-6 p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                                    <div class="mt-1 bg-cyan-100 text-cyan-700 rounded-full p-2"><i data-lucide="trending-up" class="w-5 h-5"></i></div>
                                     <p class="text-lg font-bold text-slate-700">ESCALAR SEUS RESULTADOS e construir um marketing sólido que não depende de sorte.</p>
                                 </div>
-                                <div class="flex items-start gap-4 mb-6">
-                                    <div class="mt-1 bg-yellow-500 rounded-full p-1 text-black"><i data-lucide="zap" class="w-4 h-4"></i></div>
+                                <div class="flex items-start gap-4 mb-6 p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                                    <div class="mt-1 bg-cyan-100 text-cyan-700 rounded-full p-2"><i data-lucide="bar-chart-2" class="w-5 h-5"></i></div>
                                     <p class="text-lg font-bold text-slate-700">ACELERAR O CRESCIMENTO DA EMPRESA sem medo de desperdiçar orçamento com cliques vazios.</p>
                                 </div>
-                                <div class="flex items-start gap-4 mb-6">
-                                    <div class="mt-1 bg-yellow-500 rounded-full p-1 text-black"><i data-lucide="zap" class="w-4 h-4"></i></div>
+                                <div class="flex items-start gap-4 mb-6 p-4 rounded-xl hover:bg-slate-50 transition-colors">
+                                    <div class="mt-1 bg-cyan-100 text-cyan-700 rounded-full p-2"><i data-lucide="cpu" class="w-5 h-5"></i></div>
                                     <p class="text-lg font-bold text-slate-700">UTILIZAR AS FERRAMENTAS MAIS ATUAIS, incluindo Inteligência Artificial para otimizar conversões.</p>
                                 </div>
                             </div>
@@ -256,50 +288,60 @@
                             </a>
                         </div>
                         <div class="grid grid-cols-2 gap-4">
-                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426" class="rounded-2xl shadow-xl" alt="Métricas" />
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070" class="rounded-2xl shadow-xl mt-8" alt="Dashboard" />
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426" class="rounded-2xl shadow-xl hover:scale-[1.02] transition-transform duration-500" alt="Métricas" />
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070" class="rounded-2xl shadow-xl mt-8 hover:scale-[1.02] transition-transform duration-500" alt="Dashboard" />
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- PROOF (Results) -->
-            <section id="resultados" class="py-24 bg-[#050505]">
+            <!-- Adjusted padding bottom to reduce space -->
+            <section id="resultados" class="pt-24 pb-8 bg-[#050505]">
                 <div class="container mx-auto px-6">
                     <div class="text-center mb-16">
                         <h2 class="text-3xl md:text-5xl font-black text-white mb-4">RESULTADOS REAIS</h2>
-                        <p class="text-yellow-500 font-bold">Vejam o que dizem quem já aplica nosso método</p>
+                        <p class="text-cyan-400 font-bold uppercase tracking-widest">Veja o que dizem quem já aplica nosso método</p>
                     </div>
 
                     <div class="grid md:grid-cols-3 gap-8 mb-20">
-                        <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
-                            <div class="flex gap-1 text-yellow-500 mb-4">
+                        <div class="bg-white/5 p-8 rounded-3xl border border-white/5 hover:border-cyan-500/30 transition-all hover:-translate-y-2">
+                            <div class="flex gap-1 text-yellow-400 mb-6">
                                 <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             </div>
-                            <p class="text-slate-300 italic mb-6">"Sinceramente, essas aulas sobre estratégias de lances são épicas. Mudou meu jogo no Google Ads."</p>
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center font-bold text-black">T</div>
-                                <p class="font-bold text-white">Tiago M.</p>
+                            <p class="text-slate-300 italic mb-6 leading-relaxed">"Sinceramente, essas estratégias de lances são épicas. Mudou meu jogo no Google Ads completamente."</p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-full flex items-center justify-center font-bold text-white shadow-lg">T</div>
+                                <div>
+                                    <p class="font-bold text-white">Tiago M.</p>
+                                    <p class="text-xs text-slate-500 uppercase font-bold">E-commerce</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
-                             <div class="flex gap-1 text-yellow-500 mb-4">
+                        <div class="bg-white/5 p-8 rounded-3xl border border-white/5 hover:border-cyan-500/30 transition-all hover:-translate-y-2">
+                             <div class="flex gap-1 text-yellow-400 mb-6">
                                 <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             </div>
-                            <p class="text-slate-300 italic mb-6">"Só assisti a primeira aula e já parei de perder dinheiro. O suporte é fenomenal."</p>
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center font-bold text-black">S</div>
-                                <p class="font-bold text-white">Samir A.</p>
+                            <p class="text-slate-300 italic mb-6 leading-relaxed">"Só na primeira semana já parei de perder dinheiro. O suporte da equipe é simplesmente fenomenal."</p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-full flex items-center justify-center font-bold text-white shadow-lg">S</div>
+                                <div>
+                                    <p class="font-bold text-white">Samir A.</p>
+                                    <p class="text-xs text-slate-500 uppercase font-bold">Serviços</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
-                             <div class="flex gap-1 text-yellow-500 mb-4">
+                        <div class="bg-white/5 p-8 rounded-3xl border border-white/5 hover:border-cyan-500/30 transition-all hover:-translate-y-2">
+                             <div class="flex gap-1 text-yellow-400 mb-6">
                                 <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             </div>
-                            <p class="text-slate-300 italic mb-6">"Conteúdo direto ao ponto. Consegui mudar minha estrutura e as vendas começaram a cair."</p>
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center font-bold text-black">D</div>
-                                <p class="font-bold text-white">David G.</p>
+                            <p class="text-slate-300 italic mb-6 leading-relaxed">"Conteúdo direto ao ponto. Consegui mudar minha estrutura e as vendas começaram a cair na conta."</p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-full flex items-center justify-center font-bold text-white shadow-lg">D</div>
+                                <div>
+                                    <p class="font-bold text-white">David G.</p>
+                                    <p class="text-xs text-slate-500 uppercase font-bold">Infoprodutor</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -307,47 +349,48 @@
             </section>
 
             <!-- MODULES -->
-            <section id="servicos-section" class="py-24 bg-black">
+            <!-- Adjusted padding top to reduce space -->
+            <section id="servicos-section" class="pt-8 pb-24 bg-black">
                 <div class="container mx-auto px-6">
                     <div class="text-center mb-16">
                         <h2 class="text-3xl md:text-5xl font-black text-white mb-4 uppercase">O que você vai receber:</h2>
-                        <div class="h-1 w-24 bg-yellow-500 mx-auto"></div>
+                        <div class="h-1 w-24 bg-cyan-500 mx-auto rounded-full"></div>
                     </div>
 
                     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                          <!-- Cards -->
-                        <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
-                            <div class="flex justify-between items-start mb-6"><div class="text-yellow-500 group-hover:scale-110 transition-transform"><i data-lucide="target" class="w-8 h-8"></i></div><span class="text-white/20 font-black text-2xl">01</span></div>
+                        <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-cyan-500/50 transition-all group hover:-translate-y-1">
+                            <div class="flex justify-between items-start mb-6"><div class="text-cyan-400 group-hover:scale-110 transition-transform"><i data-lucide="target" class="w-8 h-8"></i></div><span class="text-cyan-900/40 font-black text-2xl group-hover:text-cyan-500/20 transition-colors">01</span></div>
                             <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tighter">Google Ads</h3>
                             <p class="text-slate-500 text-sm leading-relaxed">Domine a rede de pesquisa e apareça para quem já quer comprar seu produto agora.</p>
                         </div>
-                        <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
-                            <div class="flex justify-between items-start mb-6"><div class="text-yellow-500 group-hover:scale-110 transition-transform"><i data-lucide="instagram" class="w-8 h-8"></i></div><span class="text-white/20 font-black text-2xl">02</span></div>
+                        <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-cyan-500/50 transition-all group hover:-translate-y-1">
+                            <div class="flex justify-between items-start mb-6"><div class="text-cyan-400 group-hover:scale-110 transition-transform"><i data-lucide="instagram" class="w-8 h-8"></i></div><span class="text-cyan-900/40 font-black text-2xl group-hover:text-cyan-500/20 transition-colors">02</span></div>
                             <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tighter">Meta Ads</h3>
                             <p class="text-slate-500 text-sm leading-relaxed">Crie desejo e gere leads qualificados através do Instagram e Facebook de forma profissional.</p>
                         </div>
-                        <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
-                            <div class="flex justify-between items-start mb-6"><div class="text-yellow-500 group-hover:scale-110 transition-transform"><i data-lucide="layout" class="w-8 h-8"></i></div><span class="text-white/20 font-black text-2xl">03</span></div>
+                        <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-cyan-500/50 transition-all group hover:-translate-y-1">
+                            <div class="flex justify-between items-start mb-6"><div class="text-cyan-400 group-hover:scale-110 transition-transform"><i data-lucide="layout" class="w-8 h-8"></i></div><span class="text-cyan-900/40 font-black text-2xl group-hover:text-cyan-500/20 transition-colors">03</span></div>
                             <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tighter">Páginas de Alta Conversão</h3>
                             <p class="text-slate-500 text-sm leading-relaxed">Design focado em vendas. Transformamos seu site em um vendedor que trabalha 24h.</p>
                         </div>
-                        <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
-                            <div class="flex justify-between items-start mb-6"><div class="text-yellow-500 group-hover:scale-110 transition-transform"><i data-lucide="trending-up" class="w-8 h-8"></i></div><span class="text-white/20 font-black text-2xl">04</span></div>
+                        <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-cyan-500/50 transition-all group hover:-translate-y-1">
+                            <div class="flex justify-between items-start mb-6"><div class="text-cyan-400 group-hover:scale-110 transition-transform"><i data-lucide="trending-up" class="w-8 h-8"></i></div><span class="text-cyan-900/40 font-black text-2xl group-hover:text-cyan-500/20 transition-colors">04</span></div>
                             <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tighter">Estratégia de Escala</h3>
                             <p class="text-slate-500 text-sm leading-relaxed">Aprenda a analisar métricas e aumentar o investimento onde o lucro é garantido.</p>
                         </div>
-                        <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
-                            <div class="flex justify-between items-start mb-6"><div class="text-yellow-500 group-hover:scale-110 transition-transform"><i data-lucide="shopping-bag" class="w-8 h-8"></i></div><span class="text-white/20 font-black text-2xl">05</span></div>
+                        <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-cyan-500/50 transition-all group hover:-translate-y-1">
+                            <div class="flex justify-between items-start mb-6"><div class="text-cyan-400 group-hover:scale-110 transition-transform"><i data-lucide="shopping-bag" class="w-8 h-8"></i></div><span class="text-cyan-900/40 font-black text-2xl group-hover:text-cyan-500/20 transition-colors">05</span></div>
                             <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tighter">Google Shopping</h3>
                             <p class="text-slate-500 text-sm leading-relaxed">Exponha seus produtos na vitrine do Google e aumente suas vendas de e-commerce.</p>
                         </div>
-                        <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
-                            <div class="flex justify-between items-start mb-6"><div class="text-yellow-500 group-hover:scale-110 transition-transform"><i data-lucide="search" class="w-8 h-8"></i></div><span class="text-white/20 font-black text-2xl">06</span></div>
+                        <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-cyan-500/50 transition-all group hover:-translate-y-1">
+                            <div class="flex justify-between items-start mb-6"><div class="text-cyan-400 group-hover:scale-110 transition-transform"><i data-lucide="search" class="w-8 h-8"></i></div><span class="text-cyan-900/40 font-black text-2xl group-hover:text-cyan-500/20 transition-colors">06</span></div>
                             <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tighter">SEO & Inteligência</h3>
                             <p class="text-slate-500 text-sm leading-relaxed">Fique orgânico e utilize IA para produzir conteúdos que vendem mais rápido.</p>
                         </div>
                         <div class="col-span-full text-center mt-8">
-                            <button onclick="navigateTo('view-servicos')" class="text-yellow-500 font-bold uppercase tracking-widest hover:text-white transition-colors border-b border-yellow-500 pb-1">Ver detalhes de todos serviços</button>
+                            <button onclick="navigateTo('view-servicos')" class="text-cyan-400 font-bold uppercase tracking-widest hover:text-white transition-colors border-b border-cyan-500 pb-1">Ver detalhes de todos serviços</button>
                         </div>
                     </div>
                 </div>
@@ -356,30 +399,31 @@
             <!-- PRICING / ORÇAMENTO -->
             <section id="pricing" class="py-24 bg-white text-black">
                 <div class="container mx-auto px-6 max-w-5xl text-center">
-                    <h2 class="text-3xl md:text-5xl font-black mb-6">PRONTO PARA ESCALAR?</h2>
+                    <h2 class="text-3xl md:text-5xl font-black mb-6 text-[#001B3D]">PRONTO PARA ESCALAR?</h2>
                     <p className="text-xl text-slate-600 mb-12 max-w-2xl mx-auto">
                         Não acreditamos em pacotes genéricos. Cada negócio tem um desafio único e merece uma estratégia personalizada.
                     </p>
                     
-                    <div class="bg-[#111] text-white rounded-[40px] p-8 md:p-12 border-4 border-yellow-500 shadow-2xl relative overflow-hidden">
-                         <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="bg-[#001B3D] text-white rounded-[40px] p-8 md:p-12 border-4 border-cyan-500 shadow-2xl relative overflow-hidden group">
+                         <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+                         <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
                             <div class="text-left space-y-6">
-                                <h3 class="text-2xl font-bold text-yellow-500 uppercase tracking-wide">O que vamos fazer:</h3>
+                                <h3 class="text-2xl font-bold text-cyan-400 uppercase tracking-wide">O que vamos fazer:</h3>
                                 <ul class="space-y-5">
                                     <li class="flex items-center gap-4">
-                                        <i data-lucide="check-circle-2" class="text-yellow-500 shrink-0 w-6 h-6"></i>
+                                        <i data-lucide="check-circle-2" class="text-cyan-400 shrink-0 w-6 h-6"></i>
                                         <span class="font-medium text-lg">Análise profunda do seu negócio</span>
                                     </li>
                                     <li class="flex items-center gap-4">
-                                        <i data-lucide="check-circle-2" class="text-yellow-500 shrink-0 w-6 h-6"></i>
+                                        <i data-lucide="check-circle-2" class="text-cyan-400 shrink-0 w-6 h-6"></i>
                                         <span class="font-medium text-lg">Definição de canais de tráfego</span>
                                     </li>
                                     <li class="flex items-center gap-4">
-                                        <i data-lucide="check-circle-2" class="text-yellow-500 shrink-0 w-6 h-6"></i>
+                                        <i data-lucide="check-circle-2" class="text-cyan-400 shrink-0 w-6 h-6"></i>
                                         <span class="font-medium text-lg">Planejamento de investimento</span>
                                     </li>
                                     <li class="flex items-center gap-4">
-                                        <i data-lucide="check-circle-2" class="text-yellow-500 shrink-0 w-6 h-6"></i>
+                                        <i data-lucide="check-circle-2" class="text-cyan-400 shrink-0 w-6 h-6"></i>
                                         <span class="font-medium text-lg">Projeção de resultados reais</span>
                                     </li>
                                 </ul>
@@ -394,7 +438,7 @@
                                     <i data-lucide="arrow-right" class="w-6 h-6"></i>
                                 </a>
                                 <div class="flex items-center justify-center md:justify-start gap-2 text-sm text-slate-500">
-                                    <i data-lucide="shield-check" class="text-yellow-500 w-5 h-5"></i>
+                                    <i data-lucide="shield-check" class="text-cyan-400 w-5 h-5"></i>
                                     <span class="uppercase font-bold tracking-wider">Sem compromisso</span>
                                 </div>
                             </div>
@@ -404,9 +448,10 @@
             </section>
 
             <!-- FAQ -->
-            <section class="py-24 bg-black text-white">
+            <section class="py-24 bg-black text-white border-t border-white/5">
                 <div class="container mx-auto px-6 max-w-3xl">
-                    <h2 class="text-3xl md:text-5xl font-black text-center mb-16">AINDA COM DÚVIDA?</h2>
+                    <h2 class="text-3xl md:text-5xl font-black text-center mb-4">AINDA COM DÚVIDA?</h2>
+                    <p class="text-center text-slate-400 mb-16 max-w-xl mx-auto">Respostas diretas para quem não tem tempo a perder e quer escalar o faturamento da empresa.</p>
                     <div class="space-y-2" id="faq-container">
                         <!-- JS injected FAQ -->
                     </div>
@@ -522,104 +567,6 @@
                 </div>
             </section>
         </div>
-
-        <!-- DETAILED ABOUT VIEW -->
-        <div id="view-sobre" class="view-section hidden bg-white min-h-screen text-black">
-             <div class="bg-slate-50 pt-8 px-6 pb-12">
-                <div class="container mx-auto">
-                    <button onclick="navigateTo('view-home')" class="flex items-center gap-2 text-[#001B3D] hover:text-cyan-600 transition-colors font-bold text-sm uppercase tracking-widest mb-12">
-                        <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar para Home
-                    </button>
-                    <div class="max-w-3xl">
-                        <span class="text-cyan-600 font-bold uppercase tracking-widest text-sm mb-4 block">Manifesto Peixeweb</span>
-                        <h1 class="text-4xl md:text-6xl font-extrabold text-[#001B3D] mb-8 font-montserrat leading-tight">
-                        Ajudando negócios a nadar contra a corrente da <span class="text-cyan-500 italic">invisibilidade.</span>
-                        </h1>
-                        <p class="text-xl text-slate-600 leading-relaxed font-light mb-8">
-                            A Peixeweb não é apenas mais uma agência de marketing. Somos parceiros estratégicos de empreendedores que cansaram de "testar" e agora querem vender.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <section class="py-24">
-                <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-                    <div class="order-2 md:order-1">
-                        <div class="relative rounded-[40px] overflow-hidden shadow-2xl">
-                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2070" alt="Nossa Cultura" class="w-full h-auto" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#001B3D]/80 to-transparent"></div>
-                        <div class="absolute bottom-8 left-8">
-                            <div class="flex items-center gap-3 text-white">
-                                <i data-lucide="fish" class="w-10 h-10 text-cyan-400"></i>
-                                <div><p class="text-sm font-bold uppercase opacity-60">Fundação</p><p class="text-2xl font-black">2024</p></div>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="order-1 md:order-2">
-                        <h2 class="text-3xl font-extrabold text-[#001B3D] mb-6">Por que Peixeweb?</h2>
-                        <p class="text-slate-600 mb-6 text-lg">No vasto oceano da internet, muitas empresas são como pequenos peixes perdidos. Nós criamos as correntes certas para você.</p>
-                        <p class="text-slate-600 mb-8 text-lg">Nosso nome carrega nossa essência: a fluidez da água (digital) aliada à agilidade do peixe (sua empresa) navegando na teia (web). Focamos no regional porque acreditamos que a proximidade gera confiança e resultados mais rápidos.</p>
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-xl">
-                                <i data-lucide="shield-check" class="text-green-500 w-6 h-6"></i>
-                                <span class="font-bold text-slate-700">Compromisso com o ROI (Retorno)</span>
-                            </div>
-                            <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-xl">
-                                <i data-lucide="target" class="text-red-500 w-6 h-6"></i>
-                                <span class="font-bold text-slate-700">Estratégias 100% Data-Driven</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <section class="py-24 bg-slate-50">
-                <div class="container mx-auto px-6">
-                  <div class="text-center mb-16">
-                    <h2 class="text-3xl font-bold text-[#001B3D]">Nossos Pilares</h2>
-                  </div>
-                  <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-lg hover:border-cyan-500/30 transition-all">
-                        <div class="text-cyan-500 mb-6"><i data-lucide="zap" class="w-8 h-8"></i></div>
-                        <h3 class="text-xl font-bold text-[#001B3D] mb-3">Agilidade Digital</h3>
-                        <p class="text-slate-600 leading-relaxed">O mercado muda em horas. Nós respondemos em minutos. Nossas campanhas são otimizadas diariamente para não perder oportunidades.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-lg hover:border-cyan-500/30 transition-all">
-                        <div class="text-cyan-500 mb-6"><i data-lucide="users" class="w-8 h-8"></i></div>
-                        <h3 class="text-xl font-bold text-[#001B3D] mb-3">Foco no Regional</h3>
-                        <p class="text-slate-600 leading-relaxed">Conhecemos a realidade do empreendedor local. Nossa linguagem e estratégia são adaptadas para o público da sua região.</p>
-                    </div>
-                    <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-lg hover:border-cyan-500/30 transition-all">
-                        <div class="text-cyan-500 mb-6"><i data-lucide="shield-check" class="w-8 h-8"></i></div>
-                        <h3 class="text-xl font-bold text-[#001B3D] mb-3">Ética e Transparência</h3>
-                        <p class="text-slate-600 leading-relaxed">Acesso total às suas contas de anúncios. Sem taxas escondidas, sem contratos abusivos. Parceria de verdade.</p>
-                    </div>
-                  </div>
-                </div>
-            </section>
-            
-            <section class="py-24">
-                <div class="container mx-auto px-6">
-                  <div class="bg-[#001B3D] rounded-[50px] p-12 md:p-20 text-center relative overflow-hidden">
-                     <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
-                     <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8 relative z-10">
-                       Pronto para dominar o seu <span class="text-cyan-400">mercado?</span>
-                     </h2>
-                     <p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto relative z-10">
-                       Não deixe sua empresa à deriva. Vamos construir o motor de vendas que você sempre precisou.
-                     </p>
-                     <a 
-                       href="https://api.whatsapp.com/send?phone=5511914716715"
-                       target="_blank"
-                       className="inline-flex items-center gap-3 bg-cyan-500 text-[#001B3D] font-bold px-12 py-5 rounded-2xl hover:bg-cyan-400 transition-all text-xl relative z-10 hover:scale-105"
-                     >
-                       Agendar Consultoria Grátis
-                       <i data-lucide="rocket" class="w-6 h-6"></i>
-                     </a>
-                  </div>
-                </div>
-            </section>
-        </div>
     </main>
 
     <!-- FOOTER -->
@@ -636,9 +583,20 @@
                 </p>
             </div>
             
-            <div class="flex justify-center gap-6 mb-8">
-                <a href="https://www.instagram.com/peixeweb/" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-yellow-500 transition-colors"><i data-lucide="instagram" class="w-6 h-6"></i></a>
-                <a href="#" class="text-slate-500 hover:text-yellow-500 transition-colors"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+            <div class="mb-8">
+                <a href="mailto:contato@peixeweb.com.br" class="inline-flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors text-lg font-medium">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    contato@peixeweb.com.br
+                </a>
+            </div>
+
+            <div class="mb-8">
+                <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-4">Redes Sociais:</h4>
+                <div class="flex justify-center gap-6">
+                    <a href="https://www.instagram.com/peixeweb/" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-cyan-500 transition-colors">
+                        <i data-lucide="instagram" class="w-8 h-8"></i>
+                    </a>
+                </div>
             </div>
 
             <div class="pt-8 border-t border-white/5 text-[10px] text-slate-600 uppercase font-bold tracking-[0.2em]">
@@ -652,8 +610,9 @@
     </footer>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://api.whatsapp.com/send?phone=5511914716715" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 flex items-center justify-center group">
-        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    <a href="https://api.whatsapp.com/send?phone=5511914716715" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white px-6 py-3 rounded-full shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group font-bold tracking-wide hover:shadow-green-500/50">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+        <span>Chat</span>
     </a>
 
     <!-- Main Logic Script -->
@@ -712,21 +671,28 @@
         // --- Header Scroll Effect ---
         window.addEventListener('scroll', () => {
             const header = document.getElementById('main-header');
+            const logo = document.getElementById('header-logo');
             if (window.scrollY > 50) {
-                header.classList.add('py-1', 'shadow-xl', 'bg-white/95', 'backdrop-blur-md');
-                header.classList.remove('py-3', 'bg-white/90');
+                header.classList.add('py-2', 'shadow-xl');
+                header.classList.remove('py-4');
+                // Resize Logo Logic - Matches React State
+                logo.classList.add('h-16', 'md:h-20');
+                logo.classList.remove('h-32', 'md:h-40');
             } else {
-                header.classList.remove('py-1', 'shadow-xl', 'bg-white/95', 'backdrop-blur-md');
-                header.classList.add('py-3', 'bg-white/90');
+                header.classList.remove('py-2', 'shadow-xl');
+                header.classList.add('py-4');
+                // Original Size Logic
+                logo.classList.remove('h-16', 'md:h-20');
+                logo.classList.add('h-32', 'md:h-40');
             }
         });
 
         // --- FAQ Logic ---
         const faqs = [
-            { q: "Quanto tempo demora para ter resultados?", a: "Os resultados iniciais no Google Ads podem aparecer nas primeiras 48h de campanha ativa. A escala real acontece entre o primeiro e o terceiro mês." },
-            { q: "Preciso ter um site para começar?", a: "Não. Se você não tiver, nós criamos a sua estrutura de alta conversão (Landing Page) inclusa em nosso método." },
-            { q: "Quanto preciso investir em anúncios?", a: "Recomendamos um investimento mínimo de R$ 30,00 por dia para ter dados suficientes para otimização inicial." },
-            { q: "Tenho suporte durante o processo?", a: "Sim. Você terá acesso direto aos nossos especialistas via WhatsApp para tirar dúvidas e analisar métricas." }
+            { q: "Quanto tempo demora para ver o dinheiro voltar?", a: "Diferente de SEO ou Branding que levam meses, o Tráfego Pago coloca sua empresa na frente de quem está comprando agora. Muitas vezes geramos leads qualificados nas primeiras 48h. Nosso foco é acelerar seu ROI (Retorno sobre Investimento) para que o próprio lucro pague a campanha e financie o crescimento do próximo mês." },
+            { q: "Meu site é antigo ou não tenho um. Isso impede o projeto?", a: "De forma alguma. Não deixe a tecnologia travar seu crescimento. Se seu site não converte, nós resolvemos. Parte da nossa estratégia inclui a criação de Landing Pages de Alta Conversão, desenhadas especificamente para transformar visitantes em pedidos de orçamento. Entregamos a máquina de vendas completa, você só precisa atender os clientes." },
+            { q: "Tenho medo de investir e não ter retorno. Qual a garantia?", a: "O tráfego não é uma aposta, é matemática. Não exigimos verbas milionárias para começar. Definimos um orçamento inicial seguro para validar os criativos e o público. Assim que o lucro começar a entrar e o Custo por Aquisição (CPA) estiver validado, nós escalamos. Você só coloca mais dinheiro quando o dinheiro já estiver voltando para o caixa da empresa." },
+            { q: "Como funciona o acompanhamento? Vou falar com robôs?", a: "Esqueça tickets de suporte e robôs. Na Peixeweb, você é tratado como parceiro de negócios. Você terá acesso direto ao estrategista responsável via WhatsApp e reuniões periódicas de alinhamento. Não somos apenas executores de anúncios, somos o braço direito de crescimento comercial da sua empresa. Monitoramos suas campanhas diariamente." }
         ];
 
         const faqContainer = document.getElementById('faq-container');
@@ -734,11 +700,11 @@
             const div = document.createElement('div');
             div.className = "border-b border-white/10";
             div.innerHTML = `
-                <button class="w-full py-6 flex justify-between items-center text-left hover:text-yellow-500 transition-colors faq-toggle">
-                    <span class="text-lg font-bold uppercase tracking-tight">${item.q}</span>
-                    <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                <button class="w-full py-6 flex justify-between items-center text-left hover:text-cyan-500 transition-colors faq-toggle group">
+                    <span class="text-lg font-bold uppercase tracking-tight group-hover:text-cyan-400 transition-colors">${item.q}</span>
+                    <i data-lucide="chevron-down" class="w-5 h-5 text-slate-500 group-hover:text-cyan-500"></i>
                 </button>
-                <div class="hidden pb-6 text-slate-400 leading-relaxed faq-content">
+                <div class="hidden pb-6 text-slate-300 leading-relaxed text-base border-l-2 border-cyan-500/30 pl-4 ml-1 faq-content">
                     ${item.a}
                 </div>
             `;
@@ -747,9 +713,26 @@
             // Add click listener
             const btn = div.querySelector('.faq-toggle');
             const content = div.querySelector('.faq-content');
+            const icon = btn.querySelector('i');
+            
             btn.addEventListener('click', () => {
+                const isHidden = content.classList.contains('hidden');
+                
+                // Toggle visibility
                 content.classList.toggle('hidden');
-                lucide.createIcons(); // Refresh icons if changed
+                
+                // Toggle Icon
+                if (isHidden) {
+                    icon.setAttribute('data-lucide', 'chevron-up');
+                    icon.classList.remove('text-slate-500');
+                    icon.classList.add('text-cyan-500');
+                } else {
+                    icon.setAttribute('data-lucide', 'chevron-down');
+                    icon.classList.add('text-slate-500');
+                    icon.classList.remove('text-cyan-500');
+                }
+                
+                lucide.createIcons(); // Refresh icons
             });
         });
         
