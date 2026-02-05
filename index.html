@@ -57,14 +57,22 @@
       }
       /* Utilities for JS toggles */
       .hidden { display: none; }
+      
+      @keyframes bounce-slow {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+      }
+      .animate-bounce-slow {
+          animation: bounce-slow 4s infinite ease-in-out;
+      }
     </style>
 <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@^19.2.4",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
     "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
     "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
     "@google/genai": "https://esm.sh/@google/genai@^1.40.0"
   }
 }
@@ -73,15 +81,15 @@
 <body class="selection:bg-cyan-500 selection:text-white">
 
     <!-- HEADER -->
-    <header id="main-header" class="fixed w-full top-0 z-50 transition-all duration-500 bg-white/95 py-4 backdrop-blur-md border-b border-slate-100">
+    <header id="main-header" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/95 py-4 backdrop-blur-md border-b border-slate-100">
         <div class="container mx-auto px-6 flex flex-col items-center relative">
-            <!-- Logo Centralizado e Aumentado -->
+            <!-- Logo Centralizado -->
             <a href="#" onclick="navigateTo('home'); return false;" class="flex items-center justify-center mb-4 lg:mb-2 group transition-all duration-300">
                 <img 
                     id="header-logo"
                     src="https://lh3.googleusercontent.com/d/1UCMSOadfQEJ0-xsTNdVct6AMCkt-D3yr" 
                     alt="Peixeweb Logo" 
-                    class="h-32 md:h-40 w-auto transition-all duration-500 group-hover:scale-105"
+                    class="h-32 md:h-40 w-auto transition-all duration-300 group-hover:scale-105"
                 />
             </a>
 
@@ -122,26 +130,20 @@
         <div id="view-home" class="view-section">
             
             <!-- HERO -->
-            <!-- Adjusted PT (increased to clear bigger header) and PB (kept small) -->
             <section id="home" class="relative pt-44 md:pt-52 pb-8 bg-black overflow-hidden border-b border-white/5">
                 
                 <!-- Background Images Layer -->
                 <div class="absolute inset-0 z-0 pointer-events-none select-none">
-                    <!-- Imagem Google Ads / Analytics (Esquerda) -->
                     <img 
                       src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070" 
                       alt="Google Ads Analytics" 
                       class="absolute top-0 left-0 w-2/3 h-full object-cover opacity-[0.08] mix-blend-luminosity -translate-x-1/4 rotate-3"
                     />
-                    
-                    <!-- Imagem Meta Ads / Mobile (Direita) -->
                     <img 
                       src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&q=80&w=1974" 
                       alt="Meta Ads Interface" 
                       class="absolute top-0 right-0 w-2/3 h-full object-cover opacity-[0.08] mix-blend-luminosity translate-x-1/4 -rotate-3"
                     />
-
-                    <!-- Gradientes de Fusão para manter o fundo preto predominante -->
                     <div class="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
                     <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black"></div>
                 </div>
@@ -157,7 +159,6 @@
                         <div class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed font-light max-w-xl mx-auto lg:mx-0">
                             <p>Não gaste dinheiro com "testes". Use a estratégia que vai trazer clientes e transforme cliques em lucro real.</p>
                             
-                            <!-- Texto de Destaque Adicionado -->
                             <div class="mt-6 p-4 bg-cyan-900/20 border-l-4 border-cyan-500 rounded-r-xl text-left backdrop-blur-sm">
                                 <p class="text-white font-bold text-xl md:text-2xl leading-tight">
                                     Você precisa de mais clientes? <br />
@@ -190,22 +191,12 @@
                         <div class="relative z-10 p-2 bg-white/5 rounded-[48px] backdrop-blur-sm border border-white/10">
                             <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=2426" alt="Especialistas analisando dados" class="rounded-[40px] grayscale group-hover:grayscale-0 transition-all duration-1000 shadow-2xl" />
                         </div>
-                        <!-- Floating badge -->
                         <div class="absolute -bottom-6 -left-6 z-20 bg-white p-6 rounded-3xl shadow-2xl hidden md:block animate-bounce-slow border-l-4 border-cyan-500">
                             <p class="text-[#001B3D] font-black text-2xl leading-none">+3 Anos</p>
                             <p class="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1">De Experiência</p>
                         </div>
                     </div>
                 </div>
-                <style>
-                    @keyframes bounce-slow {
-                        0%, 100% { transform: translateY(0); }
-                        50% { transform: translateY(-10px); }
-                    }
-                    .animate-bounce-slow {
-                        animation: bounce-slow 4s infinite ease-in-out;
-                    }
-                </style>
             </section>
 
             <!-- ABOUT -->
@@ -296,7 +287,6 @@
             </section>
 
             <!-- PROOF (Results) -->
-            <!-- Adjusted padding bottom to reduce space -->
             <section id="resultados" class="pt-24 pb-8 bg-[#050505]">
                 <div class="container mx-auto px-6">
                     <div class="text-center mb-16">
@@ -349,7 +339,6 @@
             </section>
 
             <!-- MODULES -->
-            <!-- Adjusted padding top to reduce space -->
             <section id="servicos-section" class="pt-8 pb-24 bg-black">
                 <div class="container mx-auto px-6">
                     <div class="text-center mb-16">
@@ -434,7 +423,7 @@
                                     Fale diretamente com um de nossos estrategistas e receba um plano de ação para os próximos 30 dias.
                                 </p>
                                 <a href="https://api.whatsapp.com/send?phone=5511914716715" target="_blank" class="block w-full bg-[#25D366] hover:bg-[#20bd5a] py-6 rounded-2xl text-xl font-black uppercase tracking-tight transform hover:scale-105 transition-all mb-6 flex items-center justify-center gap-3 shadow-lg shadow-green-900/20">
-                                    Solicitar Orçamento
+                                    Fazer Análises
                                     <i data-lucide="arrow-right" class="w-6 h-6"></i>
                                 </a>
                                 <div class="flex items-center justify-center md:justify-start gap-2 text-sm text-slate-500">
@@ -567,6 +556,133 @@
                 </div>
             </section>
         </div>
+
+        <!-- VIEW: DETAILED ABOUT -->
+        <div id="view-sobre" class="view-section hidden bg-white min-h-screen text-black">
+             <div class="bg-slate-50 pt-8 px-6">
+                <div class="container mx-auto">
+                  <button 
+                    onclick="handleNavClick(event, 'home', '')"
+                    class="flex items-center gap-2 text-[#001B3D] hover:text-cyan-600 transition-colors font-bold text-sm uppercase tracking-widest"
+                  >
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    Voltar para Home
+                  </button>
+                </div>
+              </div>
+
+              <!-- Hero Section -->
+              <section class="pb-24 pt-12 bg-slate-50 overflow-hidden relative">
+                <div class="absolute top-0 right-0 w-1/3 h-full bg-cyan-500/5 -skew-x-12"></div>
+                <div class="container mx-auto px-6 relative z-10">
+                  <div class="max-w-3xl">
+                    <span class="text-cyan-600 font-bold uppercase tracking-widest text-sm mb-4 block">Manifesto Peixeweb</span>
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-[#001B3D] mb-8 font-montserrat leading-tight">
+                      Ajudando negócios a nadar contra a corrente da <span class="text-cyan-500 italic">invisibilidade.</span>
+                    </h1>
+                    <p class="text-xl text-slate-600 leading-relaxed font-light mb-8">
+                      A Peixeweb não é apenas mais uma agência de marketing. Somos parceiros estratégicos de empreendedores que cansarão de "testar" e agora querem vender.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Story Section -->
+              <section class="py-24">
+                <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+                  <div class="order-2 md:order-1">
+                     <div class="relative rounded-[40px] overflow-hidden shadow-2xl">
+                       <img 
+                         src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2070" 
+                         alt="Nossa Cultura" 
+                         class="w-full h-auto"
+                       />
+                       <div class="absolute inset-0 bg-gradient-to-t from-[#001B3D]/80 to-transparent"></div>
+                       <div class="absolute bottom-8 left-8">
+                         <div class="flex items-center gap-3 text-white">
+                           <i data-lucide="fish" class="text-cyan-400 w-10 h-10"></i>
+                           <div>
+                             <p class="text-sm font-bold uppercase opacity-60">Fundação</p>
+                             <p class="text-2xl font-black">2024</p>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                  </div>
+                  <div class="order-1 md:order-2">
+                    <h2 class="text-3xl font-extrabold text-[#001B3D] mb-6">Por que Peixeweb?</h2>
+                    <p class="text-slate-600 mb-6 text-lg">
+                      No vasto oceano da internet, muitas empresas são como pequenos peixes perdidos, tentando encontrar o caminho para o cliente. Nós criamos as correntes certas para que você chegue ao seu destino com agilidade.
+                    </p>
+                    <p class="text-slate-600 mb-8 text-lg">
+                      Nosso nome carrega nossa essência: a fluidez da água (digital) aliada à agilidade do peixe (sua empresa) navegando na teia (web). Focamos no regional porque acreditamos que a proximidade gera confiança e resultados mais rápidos.
+                    </p>
+                    <div class="space-y-4">
+                      <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-xl">
+                        <i data-lucide="shield-check" class="text-green-500 w-6 h-6"></i>
+                        <span class="font-bold text-slate-700">Compromisso com o ROI (Retorno)</span>
+                      </div>
+                      <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-xl">
+                        <i data-lucide="target" class="text-red-500 w-6 h-6"></i>
+                        <span class="font-bold text-slate-700">Estratégias 100% Data-Driven</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Values Section -->
+              <section class="py-24 bg-slate-50">
+                <div class="container mx-auto px-6">
+                  <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-[#001B3D]">Nossos Pilares</h2>
+                  </div>
+                  <div class="grid md:grid-cols-3 gap-8">
+                     <!-- Card 1 -->
+                     <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-lg hover:border-cyan-500/30 transition-all">
+                        <div class="text-cyan-500 mb-6"><i data-lucide="zap" class="w-8 h-8"></i></div>
+                        <h3 class="text-xl font-bold text-[#001B3D] mb-3">Agilidade Digital</h3>
+                        <p class="text-slate-600 leading-relaxed">O mercado muda em horas. Nós respondemos em minutos. Nossas campanhas são otimizadas diariamente para não perder oportunidades.</p>
+                     </div>
+                     <!-- Card 2 -->
+                     <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-lg hover:border-cyan-500/30 transition-all">
+                        <div class="text-cyan-500 mb-6"><i data-lucide="users" class="w-8 h-8"></i></div>
+                        <h3 class="text-xl font-bold text-[#001B3D] mb-3">Foco no Regional</h3>
+                        <p class="text-slate-600 leading-relaxed">Conhecemos a realidade do empreendedor local. Nossa linguagem e estratégia são adaptadas para o público da sua região.</p>
+                     </div>
+                     <!-- Card 3 -->
+                     <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-lg hover:border-cyan-500/30 transition-all">
+                        <div class="text-cyan-500 mb-6"><i data-lucide="shield-check" class="w-8 h-8"></i></div>
+                        <h3 class="text-xl font-bold text-[#001B3D] mb-3">Ética e Transparência</h3>
+                        <p class="text-slate-600 leading-relaxed">Acesso total às suas contas de anúncios. Sem taxas escondidas, sem contratos abusivos. Parceria de verdade.</p>
+                     </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- CTA Section -->
+              <section class="py-24">
+                <div class="container mx-auto px-6">
+                  <div class="bg-[#001B3D] rounded-[50px] p-12 md:p-20 text-center relative overflow-hidden">
+                     <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+                     <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8 relative z-10">
+                       Pronto para dominar o seu <span className="text-cyan-400">mercado?</span>
+                     </h2>
+                     <p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto relative z-10">
+                       Não deixe sua empresa à deriva. Vamos construir o motor de vendas que você sempre precisou.
+                     </p>
+                     <a 
+                       href="https://api.whatsapp.com/send?phone=5511914716715"
+                       target="_blank"
+                       class="inline-flex items-center gap-3 bg-cyan-500 text-[#001B3D] font-bold px-12 py-5 rounded-2xl hover:bg-cyan-400 transition-all text-xl relative z-10 hover:scale-105"
+                     >
+                       Agendar Consultoria Grátis
+                       <i data-lucide="rocket" class="w-6 h-6"></i>
+                     </a>
+                  </div>
+                </div>
+              </section>
+        </div>
     </main>
 
     <!-- FOOTER -->
@@ -625,9 +741,11 @@
             // Hide all views
             document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
             // Show target view
-            const target = document.getElementById(viewId);
+            const target = document.getElementById('view-' + viewId);
             if(target) {
                 target.classList.remove('hidden');
+                // Check if we need to render icons for the new view
+                lucide.createIcons();
                 window.scrollTo(0,0);
             }
         }
@@ -636,31 +754,39 @@
             e.preventDefault();
             
             // Switch view first if needed
-            const currentView = document.querySelector('.view-section:not(.hidden)').id;
-            const targetViewId = 'view-' + viewName;
+            const homeView = document.getElementById('view-home');
+            const targetViewElement = document.getElementById('view-' + viewName);
+            
+            // If we are already on the view
+            if (!targetViewElement.classList.contains('hidden')) {
+                 if(targetId && targetId !== '') {
+                    const el = document.getElementById(targetId);
+                    if(el) el.scrollIntoView({ behavior: 'smooth' });
+                 } else {
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                 }
+                 return;
+            }
 
-            if (currentView !== targetViewId) {
-                navigateTo(targetViewId);
-                // Slight delay to allow DOM render
+            // If we need to change views
+            navigateTo(viewName);
+            
+            // If there is a target section ID (like #pricing), scroll to it after a slight delay
+            if (targetId && targetId !== '') {
                 setTimeout(() => {
                     const el = document.getElementById(targetId);
                     if(el) el.scrollIntoView({ behavior: 'smooth' });
                 }, 100);
-            } else {
-                const el = document.getElementById(targetId);
-                if(el) el.scrollIntoView({ behavior: 'smooth' });
             }
         }
 
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
-            const icon = document.getElementById('menu-icon');
             
             if (menu.classList.contains('max-h-0')) {
                 // Open
                 menu.classList.remove('max-h-0', 'opacity-0');
                 menu.classList.add('max-h-screen', 'opacity-100');
-                // Icon change logic would go here if needed
             } else {
                 // Close
                 menu.classList.add('max-h-0', 'opacity-0');
