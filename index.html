@@ -1,52 +1,804 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Peixeweb | Máquina de Vendas Digital</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Import Map for Gemini API -->
+    <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.39.0",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0"
+  }
+}
+</script>
+
     <style>
       body {
         font-family: 'Inter', sans-serif;
         background-color: #000;
+        color: white;
       }
       h1, h2, h3, h4, .font-montserrat {
         font-family: 'Montserrat', sans-serif;
       }
-      .bg-gold-gradient {
-        background: linear-gradient(90deg, #D4AF37 0%, #FFD700 100%);
+      .ocean-gradient {
+        background: linear-gradient(180deg, #001B3D 0%, #000000 100%);
       }
-      .text-gold {
-        color: #D4AF37;
+      .animate-blob {
+        animation: blob 7s infinite;
       }
-      .border-gold {
-        border-color: #D4AF37;
+      .animation-delay-2000 {
+        animation-delay: 2s;
       }
-      .btn-success {
-        background-color: #28a745;
-        box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+      @keyframes blob {
+        0% { transform: translate(0px, 0px) scale(1); }
+        33% { transform: translate(30px, -50px) scale(1.1); }
+        66% { transform: translate(-20px, 20px) scale(0.9); }
+        100% { transform: translate(0px, 0px) scale(1); }
       }
-      .btn-success:hover {
-        background-color: #218838;
+      /* Hide scrollbar for cleaner UI */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #000;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.4",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
-    "@google/genai": "https://esm.sh/@google/genai@^1.39.0"
-  }
-}
-</script>
 </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<body class="selection:bg-yellow-500 selection:text-black">
+
+    <!-- HEADER -->
+    <header id="main-header" class="fixed w-full top-0 z-50 transition-all duration-500 bg-white/90 py-3">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo Ampliado -->
+            <a href="#" onclick="navigateTo('home'); return false;" class="flex items-center group">
+                <img 
+                    src="https://lh3.googleusercontent.com/d/1UCMSOadfQEJ0-xsTNdVct6AMCkt-D3yr" 
+                    alt="Peixeweb Logo" 
+                    class="h-20 md:h-24 w-auto transition-all duration-500 group-hover:scale-105"
+                />
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-10">
+                <a href="#beneficios" onclick="handleNavClick(event, 'home', 'beneficios')" class="text-black hover:text-yellow-600 font-black transition-colors text-xs uppercase tracking-[0.2em]">Benefícios</a>
+                <a href="#servicos" onclick="handleNavClick(event, 'home', 'servicos-section')" class="text-black hover:text-yellow-600 font-black transition-colors text-xs uppercase tracking-[0.2em]">Serviços</a>
+                <a href="#resultados" onclick="handleNavClick(event, 'home', 'resultados')" class="text-black hover:text-yellow-600 font-black transition-colors text-xs uppercase tracking-[0.2em]">Resultados</a>
+                <a href="#pricing" onclick="handleNavClick(event, 'home', 'pricing')" class="text-black hover:text-yellow-600 font-black transition-colors text-xs uppercase tracking-[0.2em]">Orçamento</a>
+                <a href="https://api.whatsapp.com/send?phone=5511914716715" target="_blank" class="bg-black text-white font-black px-8 py-3 rounded-xl text-xs uppercase tracking-widest hover:bg-yellow-500 hover:text-black transition-all transform hover:-translate-y-1">
+                    Falar no Whats
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="lg:hidden text-black p-2" onclick="toggleMenu()">
+                <i data-lucide="menu" id="menu-icon" class="w-8 h-8"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="lg:hidden absolute top-full left-0 w-full bg-white transition-all duration-300 ease-in-out overflow-hidden max-h-0 opacity-0 shadow-2xl border-t border-slate-100">
+            <nav class="flex flex-col items-center gap-8 py-10">
+                <a href="#beneficios" onclick="handleNavClick(event, 'home', 'beneficios'); toggleMenu()" class="text-black font-black uppercase tracking-widest text-lg hover:text-yellow-500 transition-colors">Benefícios</a>
+                <a href="#servicos" onclick="handleNavClick(event, 'home', 'servicos-section'); toggleMenu()" class="text-black font-black uppercase tracking-widest text-lg hover:text-yellow-500 transition-colors">Serviços</a>
+                <a href="#resultados" onclick="handleNavClick(event, 'home', 'resultados'); toggleMenu()" class="text-black font-black uppercase tracking-widest text-lg hover:text-yellow-500 transition-colors">Resultados</a>
+                <a href="#pricing" onclick="handleNavClick(event, 'home', 'pricing'); toggleMenu()" class="text-black font-black uppercase tracking-widest text-lg hover:text-yellow-500 transition-colors">Orçamento</a>
+                <a href="https://api.whatsapp.com/send?phone=5511914716715" target="_blank" class="bg-green-500 text-white font-black px-10 py-4 rounded-2xl text-sm uppercase tracking-widest shadow-lg">
+                    WhatsApp Direto
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main>
+        <!-- HOME VIEW -->
+        <div id="view-home" class="view-section">
+            
+            <!-- HERO -->
+            <section id="home" class="relative pt-40 pb-24 bg-black overflow-hidden border-b border-white/5">
+                <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="z-10 text-center lg:text-left">
+                        <div class="inline-block py-2 px-4 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-500 text-xs font-black uppercase tracking-[0.3em] mb-8">
+                            Agência Especialista em Escala
+                        </div>
+                        <h1 class="text-4xl md:text-5xl lg:text-7xl font-black font-montserrat text-white leading-[1.1] mb-8">
+                            A Única <span class="text-yellow-500">Agência de Tráfego</span> que escala seu lucro.
+                        </h1>
+                        <p class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed font-light max-w-xl">
+                            Não gaste dinheiro com "testes". Use a estratégia que já faturou milhões para nossos clientes e transforme cliques em lucro real.
+                        </p>
+                        
+                        <div class="flex flex-col gap-5 mb-12">
+                            <div class="flex items-center gap-3 text-slate-300 justify-center lg:justify-start">
+                                <i data-lucide="check-circle" class="text-green-500 w-6 h-6"></i>
+                                <span class="font-medium">Estratégias Avançadas de Google & Meta Ads</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-slate-300 justify-center lg:justify-start">
+                                <i data-lucide="check-circle" class="text-green-500 w-6 h-6"></i>
+                                <span class="font-medium">Foco total em ROI e Conversão Validada</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <a href="#pricing" class="inline-block bg-[#28a745] hover:bg-[#218838] text-white font-black px-12 py-6 rounded-2xl text-xl uppercase tracking-tighter transition-all transform hover:scale-105 shadow-2xl shadow-green-500/30">
+                                Quero Vender Mais Agora
+                            </a>
+                        </div>
+                        <p class="text-[10px] text-slate-500 mt-6 uppercase font-bold tracking-[0.4em] opacity-50">Sua jornada rumo ao topo começa aqui</p>
+                    </div>
+
+                    <div class="relative group">
+                        <div class="absolute -inset-10 bg-yellow-500/20 blur-[120px] rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-1000"></div>
+                        <div class="relative z-10 p-2 bg-white/5 rounded-[48px] backdrop-blur-sm border border-white/10">
+                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=2426" alt="Especialistas analisando dados" class="rounded-[40px] grayscale group-hover:grayscale-0 transition-all duration-1000 shadow-2xl" />
+                        </div>
+                        <!-- Floating badge -->
+                        <div class="absolute -bottom-6 -left-6 z-20 bg-white p-6 rounded-3xl shadow-2xl hidden md:block animate-bounce-slow">
+                            <p class="text-black font-black text-2xl leading-none">+3 Anos</p>
+                            <p class="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1">De Experiência</p>
+                        </div>
+                    </div>
+                </div>
+                <style>
+                    @keyframes bounce-slow {
+                        0%, 100% { transform: translateY(0); }
+                        50% { transform: translateY(-10px); }
+                    }
+                    .animate-bounce-slow {
+                        animation: bounce-slow 4s infinite ease-in-out;
+                    }
+                </style>
+            </section>
+
+            <!-- ABOUT -->
+            <section id="sobre" class="py-24 bg-white overflow-hidden relative text-black">
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none">
+                    <div class="absolute left-0 top-0 w-96 h-96 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+                    <div class="absolute right-0 bottom-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+                </div>
+
+                <div class="container mx-auto px-6 relative z-10">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <span class="text-cyan-500 font-bold tracking-widest uppercase text-sm mb-4 block">Quem Somos</span>
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-[#001B3D] mb-8 leading-tight">
+                            Somos novos no mercado, mas experientes no <span class="text-cyan-500 underline decoration-cyan-500/30 underline-offset-8">sucesso do cliente.</span>
+                        </h2>
+                        <p class="text-lg text-slate-600 mb-12 leading-relaxed">
+                            A <strong>Peixeweb</strong> nasceu com o propósito de democratizar o marketing digital de alta performance. Somos uma agência jovem, ágil e movida por resultados concretos.
+                        </p>
+
+                        <div class="grid md:grid-cols-2 gap-6 mb-12">
+                            <div class="flex gap-4 text-left bg-slate-50 p-6 rounded-2xl border border-slate-100 transition-all hover:shadow-md">
+                                <div class="mt-1 shrink-0"><i data-lucide="check-circle-2" class="text-cyan-500 w-6 h-6"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-[#001B3D] text-lg mb-1">Estratégia Sob Medida</h4>
+                                    <p class="text-slate-600">Não acreditamos em fórmulas prontas. Cada negócio recebe uma análise profunda antes da execução.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 text-left bg-slate-50 p-6 rounded-2xl border border-slate-100 transition-all hover:shadow-md">
+                                <div class="mt-1 shrink-0"><i data-lucide="check-circle-2" class="text-cyan-500 w-6 h-6"></i></div>
+                                <div>
+                                    <h4 class="font-bold text-[#001B3D] text-lg mb-1">Transparência Total</h4>
+                                    <p class="text-slate-600">Relatórios claros e diretos. Você sabe exatamente onde seu dinheiro está sendo investido.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-12 space-x-6 flex flex-col md:flex-row justify-center items-center gap-4">
+                             <button onclick="navigateTo('view-sobre')" class="bg-[#001B3D] text-white font-bold px-8 py-4 rounded-xl hover:bg-[#003366] transition-all">
+                               Saiba mais sobre nós
+                             </button>
+                             <a href="https://fishweb.my.canva.site/peixeweb" target="_blank" class="inline-flex items-center gap-2 font-bold text-cyan-600 hover:text-cyan-700 transition-colors group text-lg">
+                               Ver nosso portfólio completo
+                               <div class="group-hover:translate-x-1 transition-transform">
+                                 <i data-lucide="rocket" class="w-5 h-5"></i>
+                               </div>
+                             </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BENEFITS -->
+            <section id="beneficios" class="py-24 bg-white text-black border-t border-slate-100">
+                <div class="container mx-auto px-6">
+                    <div class="grid lg:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <h2 class="text-3xl md:text-5xl font-black mb-8 leading-tight">
+                                Com a <span class="text-yellow-600">Peixeweb</span> você será capaz de:
+                            </h2>
+                            <div class="space-y-2">
+                                <div class="flex items-start gap-4 mb-6">
+                                    <div class="mt-1 bg-yellow-500 rounded-full p-1 text-black"><i data-lucide="zap" class="w-4 h-4"></i></div>
+                                    <p class="text-lg font-bold text-slate-700">CRIAR CAMPANHAS DO JEITO CERTO, passo a passo, atraindo os melhores clientes para seu negócio.</p>
+                                </div>
+                                <div class="flex items-start gap-4 mb-6">
+                                    <div class="mt-1 bg-yellow-500 rounded-full p-1 text-black"><i data-lucide="zap" class="w-4 h-4"></i></div>
+                                    <p class="text-lg font-bold text-slate-700">ESCALAR SEUS RESULTADOS e construir um marketing sólido que não depende de sorte.</p>
+                                </div>
+                                <div class="flex items-start gap-4 mb-6">
+                                    <div class="mt-1 bg-yellow-500 rounded-full p-1 text-black"><i data-lucide="zap" class="w-4 h-4"></i></div>
+                                    <p class="text-lg font-bold text-slate-700">ACELERAR O CRESCIMENTO DA EMPRESA sem medo de desperdiçar orçamento com cliques vazios.</p>
+                                </div>
+                                <div class="flex items-start gap-4 mb-6">
+                                    <div class="mt-1 bg-yellow-500 rounded-full p-1 text-black"><i data-lucide="zap" class="w-4 h-4"></i></div>
+                                    <p class="text-lg font-bold text-slate-700">UTILIZAR AS FERRAMENTAS MAIS ATUAIS, incluindo Inteligência Artificial para otimizar conversões.</p>
+                                </div>
+                            </div>
+                            <a href="#pricing" class="mt-8 inline-block bg-[#28a745] text-white px-8 py-4 rounded-xl font-black uppercase text-center hover:scale-105 transition-all">
+                                Quero me inscrever agora
+                            </a>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426" class="rounded-2xl shadow-xl" alt="Métricas" />
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070" class="rounded-2xl shadow-xl mt-8" alt="Dashboard" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROOF (Results) -->
+            <section id="resultados" class="py-24 bg-[#050505]">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-5xl font-black text-white mb-4">RESULTADOS REAIS</h2>
+                        <p class="text-yellow-500 font-bold">Vejam o que dizem quem já aplica nosso método</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8 mb-20">
+                        <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                            <div class="flex gap-1 text-yellow-500 mb-4">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <p class="text-slate-300 italic mb-6">"Sinceramente, essas aulas sobre estratégias de lances são épicas. Mudou meu jogo no Google Ads."</p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center font-bold text-black">T</div>
+                                <p class="font-bold text-white">Tiago M.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                             <div class="flex gap-1 text-yellow-500 mb-4">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <p class="text-slate-300 italic mb-6">"Só assisti a primeira aula e já parei de perder dinheiro. O suporte é fenomenal."</p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center font-bold text-black">S</div>
+                                <p class="font-bold text-white">Samir A.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                             <div class="flex gap-1 text-yellow-500 mb-4">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <p class="text-slate-300 italic mb-6">"Conteúdo direto ao ponto. Consegui mudar minha estrutura e as vendas começaram a cair."</p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center font-bold text-black">D</div>
+                                <p class="font-bold text-white">David G.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-white rounded-xl overflow-hidden p-2"><img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&q=80&w=2070" alt="Result 1" class="rounded-lg" /></div>
+                        <div class="bg-white rounded-xl overflow-hidden p-2"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070" alt="Result 2" class="rounded-lg" /></div>
+                        <div class="bg-white rounded-xl overflow-hidden p-2"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426" alt="Result 3" class="rounded-lg" /></div>
+                        <div class="bg-white rounded-xl overflow-hidden p-2"><img src="https://images.unsplash.com/photo-1553484771-047a44eee27b?auto=format&fit=crop&q=80&w=2070" alt="Result 4" class="rounded-lg" /></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI IMAGE LAB -->
+            <section class="py-24 bg-white text-black">
+                <div class="container mx-auto px-6">
+                    <div class="max-w-4xl mx-auto">
+                        <div class="text-center mb-12">
+                            <span class="text-cyan-500 font-bold tracking-widest uppercase text-sm mb-4 block">Tecnologia Peixeweb</span>
+                            <h2 class="text-3xl md:text-5xl font-extrabold text-[#001B3D] mb-4">Creative <span class="text-cyan-500">AI Lab</span></h2>
+                            <p className="text-slate-600">Demonstração da nossa expertise em IA: Remova objetos indesejados de suas fotos em segundos.</p>
+                        </div>
+
+                        <div class="bg-slate-50 border border-slate-200 rounded-[32px] overflow-hidden shadow-xl">
+                            <div class="p-8 md:p-12">
+                                <div class="grid md:grid-cols-2 gap-8">
+                                    <div class="space-y-4">
+                                        <div id="upload-container" class="aspect-square bg-slate-200 rounded-2xl flex flex-col items-center justify-center relative overflow-hidden border-2 border-dashed border-slate-300">
+                                            <i data-lucide="image" class="w-12 h-12 text-slate-400 mb-4"></i>
+                                            <p class="text-slate-500 font-medium">Faça upload da foto</p>
+                                            <img id="preview-image" class="absolute inset-0 w-full h-full object-cover hidden" />
+                                            <input type="file" id="image-upload" class="absolute inset-0 opacity-0 cursor-pointer" accept="image/*" />
+                                        </div>
+                                        <div class="bg-white p-4 rounded-xl shadow-sm">
+                                            <label class="text-xs font-bold text-slate-500 uppercase block mb-2">Comando para a IA</label>
+                                            <div class="flex gap-2">
+                                                <input type="text" id="ai-prompt" value="Remova o copo de cerveja da foto" class="flex-1 bg-slate-50 border-none outline-none focus:ring-2 focus:ring-cyan-500 rounded-lg px-4 py-2 text-sm" placeholder="Ex: Remova o copo..." />
+                                                <button onclick="document.getElementById('ai-prompt').value=''" class="p-2 text-slate-400 hover:text-red-500 transition-colors"><i data-lucide="trash-2" class="w-5 h-5"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col">
+                                        <div id="result-container" class="aspect-square bg-[#001B3D] rounded-2xl flex flex-col items-center justify-center relative overflow-hidden">
+                                            <div id="loading-state" class="hidden text-center p-6">
+                                                <i data-lucide="loader-2" class="w-12 h-12 text-cyan-400 animate-spin mx-auto mb-4"></i>
+                                                <p class="text-white font-medium animate-pulse">Removendo distrações...</p>
+                                            </div>
+                                            <div id="initial-state" class="text-center p-6">
+                                                <i data-lucide="sparkles" class="w-12 h-12 text-slate-700 mb-4"></i>
+                                                <p class="text-slate-500 font-medium">O resultado aparecerá aqui</p>
+                                            </div>
+                                            <img id="result-image" class="w-full h-full object-cover hidden" />
+                                            <div id="error-state" class="hidden text-center p-6">
+                                                <p class="text-red-400 text-sm mb-2">Erro ao processar imagem.</p>
+                                            </div>
+                                        </div>
+                                        <button id="process-btn" class="mt-4 w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all bg-slate-300 text-slate-500 cursor-not-allowed" disabled>
+                                            <i data-lucide="wand-2" class="w-5 h-5"></i>
+                                            Aplicar Mágica de IA
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MODULES -->
+            <section id="servicos-section" class="py-24 bg-black">
+                <div class="container mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-5xl font-black text-white mb-4 uppercase">O que você vai receber:</h2>
+                        <div class="h-1 w-24 bg-yellow-500 mx-auto"></div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                         <!-- Cards -->
+                        <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
+                            <div class="flex justify-between items-start mb-6"><div class="text-yellow-500 group-hover:scale-110 transition-transform"><i data-lucide="target" class="w-8 h-8"></i></div><span class="text-white/20 font-black text-2xl">01</span></div>
+                            <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tighter">Google Ads</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">Domine a rede de pesquisa e apareça para quem já quer comprar seu produto agora.</p>
+                        </div>
+                        <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
+                            <div class="flex justify-between items-start mb-6"><div class="text-yellow-500 group-hover:scale-110 transition-transform"><i data-lucide="instagram" class="w-8 h-8"></i></div><span class="text-white/20 font-black text-2xl">02</span></div>
+                            <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tighter">Meta Ads</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">Crie desejo e gere leads qualificados através do Instagram e Facebook de forma profissional.</p>
+                        </div>
+                        <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
+                            <div class="flex justify-between items-start mb-6"><div class="text-yellow-500 group-hover:scale-110 transition-transform"><i data-lucide="layout" class="w-8 h-8"></i></div><span class="text-white/20 font-black text-2xl">03</span></div>
+                            <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tighter">Páginas de Alta Conversão</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">Design focado em vendas. Transformamos seu site em um vendedor que trabalha 24h.</p>
+                        </div>
+                        <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
+                            <div class="flex justify-between items-start mb-6"><div class="text-yellow-500 group-hover:scale-110 transition-transform"><i data-lucide="trending-up" class="w-8 h-8"></i></div><span class="text-white/20 font-black text-2xl">04</span></div>
+                            <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tighter">Estratégia de Escala</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">Aprenda a analisar métricas e aumentar o investimento onde o lucro é garantido.</p>
+                        </div>
+                        <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
+                            <div class="flex justify-between items-start mb-6"><div class="text-yellow-500 group-hover:scale-110 transition-transform"><i data-lucide="shopping-bag" class="w-8 h-8"></i></div><span class="text-white/20 font-black text-2xl">05</span></div>
+                            <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tighter">Google Shopping</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">Exponha seus produtos na vitrine do Google e aumente suas vendas de e-commerce.</p>
+                        </div>
+                        <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
+                            <div class="flex justify-between items-start mb-6"><div class="text-yellow-500 group-hover:scale-110 transition-transform"><i data-lucide="search" class="w-8 h-8"></i></div><span class="text-white/20 font-black text-2xl">06</span></div>
+                            <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tighter">SEO & Inteligência</h3>
+                            <p class="text-slate-500 text-sm leading-relaxed">Fique orgânico e utilize IA para produzir conteúdos que vendem mais rápido.</p>
+                        </div>
+                        <div class="col-span-full text-center mt-8">
+                            <button onclick="navigateTo('view-servicos')" class="text-yellow-500 font-bold uppercase tracking-widest hover:text-white transition-colors border-b border-yellow-500 pb-1">Ver detalhes de todos serviços</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PRICING -->
+            <section id="pricing" class="py-24 bg-white text-black">
+                <div class="container mx-auto px-6 max-w-4xl text-center">
+                    <h2 class="text-3xl md:text-5xl font-black mb-12">FAÇA SUA INSCRIÇÃO AGORA:</h2>
+                    
+                    <div class="bg-[#111] text-white rounded-[40px] p-8 md:p-16 border-4 border-yellow-500 shadow-2xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-yellow-500 text-black font-black px-6 py-2 rounded-bl-3xl uppercase text-xs tracking-widest">Oferta Limitada</div>
+                        
+                        <div class="mb-12">
+                            <p class="text-slate-500 line-through text-2xl font-bold mb-2 uppercase">De: R$ 2.500,00</p>
+                            <p class="text-yellow-500 font-black text-lg mb-4 uppercase">Por apenas:</p>
+                            <div class="flex flex-col md:flex-row items-center justify-center gap-2">
+                                <span class="text-3xl font-bold">12x de</span>
+                                <span class="text-6xl md:text-8xl font-black text-white">R$ 129,45</span>
+                            </div>
+                            <p class="text-slate-400 mt-4 uppercase font-bold tracking-widest">Ou R$ 1.297,00 à vista</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4 text-left mb-12 max-w-xl mx-auto">
+                            <div class="flex items-center gap-3"><i data-lucide="check" class="text-yellow-500 w-5 h-5"></i> <span>Consultoria Estratégica</span></div>
+                            <div class="flex items-center gap-3"><i data-lucide="check" class="text-yellow-500 w-5 h-5"></i> <span>Gestão de Google & Meta</span></div>
+                            <div class="flex items-center gap-3"><i data-lucide="check" class="text-yellow-500 w-5 h-5"></i> <span>Criação de Landing Page</span></div>
+                            <div class="flex items-center gap-3"><i data-lucide="check" class="text-yellow-500 w-5 h-5"></i> <span>Bônus: IA para Anúncios</span></div>
+                        </div>
+
+                        <a href="https://api.whatsapp.com/send?phone=5511914716715" class="block w-full bg-[#28a745] hover:bg-[#218838] py-6 rounded-2xl text-2xl font-black uppercase tracking-tight transform hover:scale-105 transition-all mb-8">
+                            Quero Me Inscrever Agora
+                        </a>
+
+                        <div class="flex items-center justify-center gap-4 border-t border-white/10 pt-8">
+                            <i data-lucide="shield-check" class="text-green-500 w-8 h-8"></i>
+                            <div class="text-left">
+                                <p class="font-bold uppercase leading-none">Garantia Incondicional</p>
+                                <p class="text-sm text-slate-500">7 dias para testar ou seu dinheiro de volta.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ -->
+            <section class="py-24 bg-black text-white">
+                <div class="container mx-auto px-6 max-w-3xl">
+                    <h2 class="text-3xl md:text-5xl font-black text-center mb-16">AINDA COM DÚVIDA?</h2>
+                    <div class="space-y-2" id="faq-container">
+                        <!-- JS injected FAQ -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- DETAILED SERVICES VIEW -->
+        <div id="view-servicos" class="view-section hidden bg-slate-50 min-h-screen text-black">
+            <div class="bg-[#001B3D] pt-8 px-6 pb-20">
+                <div class="container mx-auto">
+                    <button onclick="navigateTo('view-home')" class="flex items-center gap-2 text-cyan-400 hover:text-white transition-colors font-bold text-sm uppercase tracking-widest mb-12">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar para Home
+                    </button>
+                    <div class="text-center text-white">
+                         <h1 class="text-4xl md:text-6xl font-extrabold font-montserrat mb-6">Nossas <span class="text-cyan-400">Soluções</span> Digitais</h1>
+                         <p class="text-xl text-slate-300 max-w-2xl mx-auto font-light">Estratégias personalizadas para tirar sua empresa da invisibilidade.</p>
+                    </div>
+                </div>
+            </div>
+            <section class="py-24">
+                <div class="container mx-auto px-6 space-y-16">
+                     <!-- Service Detail 1 -->
+                     <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100">
+                        <div class="w-16 h-16 bg-cyan-50 rounded-2xl flex items-center justify-center text-cyan-600 mb-6"><i data-lucide="trending-up" class="w-10 h-10"></i></div>
+                        <h3 class="text-2xl font-extrabold text-[#001B3D] mb-4">Gestão de Tráfego: Google Ads</h3>
+                        <p class="text-slate-600 mb-8 leading-relaxed text-lg">Apareça para quem já está procurando pelo que você vende. O Google Ads é a ferramenta mais poderosa de intenção de compra do mundo.</p>
+                        <ul class="grid md:grid-cols-2 gap-4">
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Campanha de Pesquisa</li>
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Youtube Ads</li>
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Remarketing Inteligente</li>
+                        </ul>
+                     </div>
+                     <!-- Service Detail 2 -->
+                     <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100">
+                        <div class="w-16 h-16 bg-cyan-50 rounded-2xl flex items-center justify-center text-cyan-600 mb-6"><i data-lucide="instagram" class="w-10 h-10"></i></div>
+                        <h3 class="text-2xl font-extrabold text-[#001B3D] mb-4">Gestão de Tráfego: Meta Ads</h3>
+                        <p class="text-slate-600 mb-8 leading-relaxed text-lg">Crie desejo e engajamento. No Instagram e Facebook, encontramos seu cliente ideal com base no comportamento e interesses dele.</p>
+                        <ul class="grid md:grid-cols-2 gap-4">
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Feed & Stories</li>
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Venda Direta (Catalog)</li>
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Audiências Lookalike</li>
+                        </ul>
+                     </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- DETAILED ABOUT VIEW -->
+        <div id="view-sobre" class="view-section hidden bg-white min-h-screen text-black">
+             <div class="bg-slate-50 pt-8 px-6 pb-12">
+                <div class="container mx-auto">
+                    <button onclick="navigateTo('view-home')" class="flex items-center gap-2 text-[#001B3D] hover:text-cyan-600 transition-colors font-bold text-sm uppercase tracking-widest mb-12">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar para Home
+                    </button>
+                    <div class="max-w-3xl">
+                        <span class="text-cyan-600 font-bold uppercase tracking-widest text-sm mb-4 block">Manifesto Peixeweb</span>
+                        <h1 class="text-4xl md:text-6xl font-extrabold text-[#001B3D] mb-8 font-montserrat leading-tight">
+                        Ajudando negócios a nadar contra a corrente da <span class="text-cyan-500 italic">invisibilidade.</span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <section class="py-24">
+                <div class="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+                    <div class="order-2 md:order-1">
+                        <div class="relative rounded-[40px] overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2070" alt="Nossa Cultura" class="w-full h-auto" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#001B3D]/80 to-transparent"></div>
+                        <div class="absolute bottom-8 left-8">
+                            <div class="flex items-center gap-3 text-white">
+                                <i data-lucide="fish" class="w-10 h-10 text-cyan-400"></i>
+                                <div><p class="text-sm font-bold uppercase opacity-60">Fundação</p><p class="text-2xl font-black">2024</p></div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <h2 class="text-3xl font-extrabold text-[#001B3D] mb-6">Por que Peixeweb?</h2>
+                        <p class="text-slate-600 mb-6 text-lg">No vasto oceano da internet, muitas empresas são como pequenos peixes perdidos. Nós criamos as correntes certas para você.</p>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-xl">
+                                <i data-lucide="shield-check" class="text-green-500 w-6 h-6"></i>
+                                <span class="font-bold text-slate-700">Compromisso com o ROI (Retorno)</span>
+                            </div>
+                            <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-xl">
+                                <i data-lucide="target" class="text-red-500 w-6 h-6"></i>
+                                <span class="font-bold text-slate-700">Estratégias 100% Data-Driven</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white py-12 border-t border-white/10">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-8">
+                <img 
+                    src="https://lh3.googleusercontent.com/d/1UCMSOadfQEJ0-xsTNdVct6AMCkt-D3yr" 
+                    alt="Peixeweb Logo" 
+                    class="h-12 md:h-16 w-auto mx-auto mb-4 opacity-90 brightness-110"
+                />
+                <p class="text-slate-500 mt-4 text-sm max-w-md mx-auto font-medium tracking-wide uppercase">
+                    Experiência de 03 anos
+                </p>
+            </div>
+            
+            <div class="flex justify-center gap-6 mb-8">
+                <a href="https://www.instagram.com/peixeweb/" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-yellow-500 transition-colors"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                <a href="#" class="text-slate-500 hover:text-yellow-500 transition-colors"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+            </div>
+
+            <div class="pt-8 border-t border-white/5 text-[10px] text-slate-600 uppercase font-bold tracking-[0.2em]">
+                <p>© 2024 PEIXEWEB AGÊNCIA DIGITAL. TODOS OS DIREITOS RESERVADOS.</p>
+            </div>
+            
+            <a href="#home" onclick="handleNavClick(event, 'home', 'home')" class="inline-flex items-center gap-2 text-slate-500 hover:text-white transition-colors mt-8 text-xs font-bold uppercase tracking-widest">
+                <i data-lucide="arrow-up" class="w-4 h-4"></i> Voltar ao Topo
+            </a>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://api.whatsapp.com/send?phone=5511914716715" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 flex items-center justify-center group">
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
+    </a>
+
+    <!-- Main Logic Script -->
+    <script>
+        // --- Init Icons ---
+        lucide.createIcons();
+
+        // --- Navigation Logic ---
+        function navigateTo(viewId) {
+            // Hide all views
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+            // Show target view
+            const target = document.getElementById(viewId);
+            if(target) {
+                target.classList.remove('hidden');
+                window.scrollTo(0,0);
+            }
+        }
+
+        function handleNavClick(e, viewName, targetId) {
+            e.preventDefault();
+            
+            // Switch view first if needed
+            const currentView = document.querySelector('.view-section:not(.hidden)').id;
+            const targetViewId = 'view-' + viewName;
+
+            if (currentView !== targetViewId) {
+                navigateTo(targetViewId);
+                // Slight delay to allow DOM render
+                setTimeout(() => {
+                    const el = document.getElementById(targetId);
+                    if(el) el.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            } else {
+                const el = document.getElementById(targetId);
+                if(el) el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            
+            if (menu.classList.contains('max-h-0')) {
+                // Open
+                menu.classList.remove('max-h-0', 'opacity-0');
+                menu.classList.add('max-h-screen', 'opacity-100');
+                // Icon change logic would go here if needed
+            } else {
+                // Close
+                menu.classList.add('max-h-0', 'opacity-0');
+                menu.classList.remove('max-h-screen', 'opacity-100');
+            }
+        }
+
+        // --- Header Scroll Effect ---
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('py-1', 'shadow-xl', 'bg-white/95', 'backdrop-blur-md');
+                header.classList.remove('py-3', 'bg-white/90');
+            } else {
+                header.classList.remove('py-1', 'shadow-xl', 'bg-white/95', 'backdrop-blur-md');
+                header.classList.add('py-3', 'bg-white/90');
+            }
+        });
+
+        // --- FAQ Logic ---
+        const faqs = [
+            { q: "Quanto tempo demora para ter resultados?", a: "Os resultados iniciais no Google Ads podem aparecer nas primeiras 48h de campanha ativa. A escala real acontece entre o primeiro e o terceiro mês." },
+            { q: "Preciso ter um site para começar?", a: "Não. Se você não tiver, nós criamos a sua estrutura de alta conversão (Landing Page) inclusa em nosso método." },
+            { q: "Quanto preciso investir em anúncios?", a: "Recomendamos um investimento mínimo de R$ 30,00 por dia para ter dados suficientes para otimização inicial." },
+            { q: "Tenho suporte durante o processo?", a: "Sim. Você terá acesso direto aos nossos especialistas via WhatsApp para tirar dúvidas e analisar métricas." }
+        ];
+
+        const faqContainer = document.getElementById('faq-container');
+        faqs.forEach(item => {
+            const div = document.createElement('div');
+            div.className = "border-b border-white/10";
+            div.innerHTML = `
+                <button class="w-full py-6 flex justify-between items-center text-left hover:text-yellow-500 transition-colors faq-toggle">
+                    <span class="text-lg font-bold uppercase tracking-tight">${item.q}</span>
+                    <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                </button>
+                <div class="hidden pb-6 text-slate-400 leading-relaxed faq-content">
+                    ${item.a}
+                </div>
+            `;
+            faqContainer.appendChild(div);
+            
+            // Add click listener
+            const btn = div.querySelector('.faq-toggle');
+            const content = div.querySelector('.faq-content');
+            btn.addEventListener('click', () => {
+                content.classList.toggle('hidden');
+                lucide.createIcons(); // Refresh icons if changed
+            });
+        });
+        
+        // Refresh icons after dynamic insert
+        lucide.createIcons();
+    </script>
+
+    <!-- AI Module Script -->
+    <script type="module">
+        import { GoogleGenAI } from "@google/genai";
+
+        // IMPORTANT: In a real client-side app, you should not expose API keys directly.
+        // For this demo to work, user must have a key. 
+        // We will prompt for it or assume it's set if running in a specific env.
+        // For this output, we'll implement a simple prompt if missing.
+        
+        const fileInput = document.getElementById('image-upload');
+        const previewImage = document.getElementById('preview-image');
+        const processBtn = document.getElementById('process-btn');
+        const promptInput = document.getElementById('ai-prompt');
+        const resultImage = document.getElementById('result-image');
+        const loadingState = document.getElementById('loading-state');
+        const initialState = document.getElementById('initial-state');
+        const errorState = document.getElementById('error-state');
+
+        let base64Image = null;
+        let mimeType = '';
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                mimeType = file.type;
+                const reader = new FileReader();
+                reader.onload = () => {
+                    previewImage.src = reader.result;
+                    previewImage.classList.remove('hidden');
+                    // Store raw base64 without prefix
+                    base64Image = reader.result.split(',')[1];
+                    
+                    // Enable button
+                    processBtn.disabled = false;
+                    processBtn.classList.remove('bg-slate-300', 'text-slate-500', 'cursor-not-allowed');
+                    processBtn.classList.add('bg-cyan-500', 'hover:bg-cyan-400', 'text-[#001B3D]', 'shadow-lg');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        processBtn.addEventListener('click', async () => {
+            const prompt = document.getElementById('ai-prompt').value;
+            if (!base64Image) return;
+
+            // Simple UI state management
+            document.getElementById('initial-state').classList.add('hidden');
+            document.getElementById('result-image').classList.add('hidden');
+            document.getElementById('error-state').classList.add('hidden');
+            document.getElementById('loading-state').classList.remove('hidden');
+            processBtn.disabled = true;
+            processBtn.textContent = 'Processando...';
+
+            try {
+                // Check for API Key (Simple implementation for standalone HTML)
+                let apiKey = localStorage.getItem('GEMINI_API_KEY');
+                if (!apiKey) {
+                    apiKey = prompt("Por favor, insira sua API Key do Google Gemini para testar a demo:");
+                    if (apiKey) localStorage.setItem('GEMINI_API_KEY', apiKey);
+                    else throw new Error("API Key necessária");
+                }
+
+                const ai = new GoogleGenAI({ apiKey: apiKey });
+                
+                const response = await ai.models.generateContent({
+                    model: 'gemini-2.5-flash-image',
+                    contents: {
+                        parts: [
+                            {
+                                inlineData: {
+                                    data: base64Image,
+                                    mimeType: mimeType || 'image/png',
+                                },
+                            },
+                            {
+                                text: prompt,
+                            },
+                        ],
+                    },
+                });
+
+                let foundImage = false;
+                if (response.candidates?.[0]?.content?.parts) {
+                    for (const part of response.candidates[0].content.parts) {
+                        if (part.inlineData) {
+                            const resultSrc = `data:image/png;base64,${part.inlineData.data}`;
+                            const imgEl = document.getElementById('result-image');
+                            imgEl.src = resultSrc;
+                            imgEl.classList.remove('hidden');
+                            foundImage = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!foundImage) throw new Error("Nenhuma imagem gerada.");
+
+            } catch (err) {
+                console.error(err);
+                document.getElementById('error-state').classList.remove('hidden');
+                document.getElementById('error-state').querySelector('p').textContent = err.message || "Erro ao processar";
+            } finally {
+                document.getElementById('loading-state').classList.add('hidden');
+                processBtn.disabled = false;
+                processBtn.innerHTML = '<i data-lucide="wand-2" class="w-5 h-5"></i> Aplicar Mágica de IA';
+                lucide.createIcons();
+            }
+        });
+    </script>
+</body>
 </html>
