@@ -53,7 +53,7 @@ const Contact: React.FC = () => {
                 <ContactInfo 
                   icon={<Mail size={24} />} 
                   label="E-mail" 
-                  value="contato@peixeweb.com.br" 
+                  value="peixeweb@gmail.com" 
                 />
                 <ContactInfo 
                   icon={<MapPin size={24} />} 

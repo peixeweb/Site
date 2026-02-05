@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { GoogleGenAI } from "@google/genai";
+// Correct import according to guidelines
+import {GoogleGenAI} from "@google/genai";
 import { Sparkles, Trash2, ImageIcon, Loader2, Wand2 } from 'lucide-react';
 
 const AIImageLab: React.FC = () => {
@@ -32,6 +33,7 @@ const AIImageLab: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
+      // Create a new instance right before use to ensure the most up-to-date API key is used
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const response = await ai.models.generateContent({
         model: 'gemini-2.5-flash-image',
@@ -52,6 +54,7 @@ const AIImageLab: React.FC = () => {
 
       let foundImage = false;
       if (response.candidates?.[0]?.content?.parts) {
+        // Iterate through all parts to find the image part, as recommended
         for (const part of response.candidates[0].content.parts) {
           if (part.inlineData) {
             setResultImage(`data:image/png;base64,${part.inlineData.data}`);

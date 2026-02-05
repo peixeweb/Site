@@ -1,6 +1,11 @@
 
 import React from 'react';
 import { CheckCircle2, Rocket } from 'lucide-react';
+import { ViewState } from '../App';
+
+interface AboutProps {
+  setView: (view: ViewState) => void;
+}
 
 const Feature: React.FC<{ title: string; desc: string }> = ({ title, desc }) => (
   <div className="flex gap-4 text-left bg-slate-50 p-6 rounded-2xl border border-slate-100 transition-all hover:shadow-md">
@@ -14,10 +19,9 @@ const Feature: React.FC<{ title: string; desc: string }> = ({ title, desc }) => 
   </div>
 );
 
-const About: React.FC = () => {
+const About: React.FC<AboutProps> = ({ setView }) => {
   return (
     <section id="sobre" className="py-24 bg-white overflow-hidden relative">
-      {/* Decorative Blobs moved to background */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none">
         <div className="absolute left-0 top-0 w-96 h-96 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
         <div className="absolute right-0 bottom-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
@@ -30,7 +34,7 @@ const About: React.FC = () => {
             Somos novos no mercado, mas experientes no <span className="text-cyan-500 underline decoration-cyan-500/30 underline-offset-8">sucesso do cliente.</span>
           </h2>
           <p className="text-lg text-slate-600 mb-12 leading-relaxed">
-            A <strong>Peixeweb</strong> nasceu com o propósito de democratizar o marketing digital de alta performance. Somos uma agência jovem, ágil e movida por resultados concretos. Nosso foco é o crescimento regional: acreditamos que o sucesso do empreendedor local movimenta toda a economia.
+            A <strong>Peixeweb</strong> nasceu com o propósito de democratizar o marketing digital de alta performance. Somos uma agência jovem, ágil e movida por resultados concretos.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 mb-12">
@@ -42,22 +46,12 @@ const About: React.FC = () => {
               title="Transparência Total" 
               desc="Relatórios claros e diretos. Você sabe exatamente onde seu dinheiro está sendo investido."
             />
-            <Feature 
-              title="Agilidade de Resposta" 
-              desc="Por sermos focados no regional, nosso suporte é humano, próximo e extremamente rápido."
-            />
-            <div className="flex gap-4 text-left bg-cyan-500 p-6 rounded-2xl border border-cyan-400 transition-all hover:shadow-lg">
-              <div className="mt-1 shrink-0 text-[#001B3D]">
-                <Rocket size={24} />
-              </div>
-              <div>
-                <h4 className="font-bold text-[#001B3D] text-lg mb-1">Nossa Missão</h4>
-                <p className="text-[#001B3D]/80">Transformar pequenos negócios em referências digitais através do crescimento regional.</p>
-              </div>
-            </div>
           </div>
           
-          <div className="mt-12">
+          <div className="mt-12 space-x-6">
+             <button onClick={() => setView('sobre')} className="bg-[#001B3D] text-white font-bold px-8 py-4 rounded-xl hover:bg-[#003366] transition-all">
+               Saiba mais sobre nós
+             </button>
              <a href="https://fishweb.my.canva.site/peixeweb" target="_blank" className="inline-flex items-center gap-2 font-bold text-cyan-600 hover:text-cyan-700 transition-colors group text-lg">
                Ver nosso portfólio completo
                <div className="group-hover:translate-x-1 transition-transform">
