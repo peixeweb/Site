@@ -55,6 +55,8 @@
       ::-webkit-scrollbar-thumb:hover {
         background: #555;
       }
+      /* Utilities for JS toggles */
+      .hidden { display: none; }
     </style>
 <script type="importmap">
 {
@@ -73,7 +75,7 @@
     <!-- HEADER -->
     <header id="main-header" class="fixed w-full top-0 z-50 transition-all duration-500 bg-white/90 py-3">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <!-- Logo Ampliado -->
+            <!-- Logo -->
             <a href="#" onclick="navigateTo('home'); return false;" class="flex items-center group">
                 <img 
                     src="https://lh3.googleusercontent.com/d/1UCMSOadfQEJ0-xsTNdVct6AMCkt-D3yr" 
@@ -144,7 +146,7 @@
                         </div>
 
                         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                            <a href="#pricing" class="inline-block bg-[#28a745] hover:bg-[#218838] text-white font-black px-12 py-6 rounded-2xl text-xl uppercase tracking-tighter transition-all transform hover:scale-105 shadow-2xl shadow-green-500/30">
+                            <a href="#pricing" onclick="handleNavClick(event, 'home', 'pricing')" class="inline-block bg-[#28a745] hover:bg-[#218838] text-white font-black px-12 py-6 rounded-2xl text-xl uppercase tracking-tighter transition-all transform hover:scale-105 shadow-2xl shadow-green-500/30">
                                 Quero Vender Mais Agora
                             </a>
                         </div>
@@ -249,7 +251,7 @@
                                     <p class="text-lg font-bold text-slate-700">UTILIZAR AS FERRAMENTAS MAIS ATUAIS, incluindo Inteligência Artificial para otimizar conversões.</p>
                                 </div>
                             </div>
-                            <a href="#pricing" class="mt-8 inline-block bg-[#28a745] text-white px-8 py-4 rounded-xl font-black uppercase text-center hover:scale-105 transition-all shadow-lg shadow-green-500/30">
+                            <a href="#pricing" onclick="handleNavClick(event, 'home', 'pricing')" class="mt-8 inline-block bg-[#28a745] text-white px-8 py-4 rounded-xl font-black uppercase text-center hover:scale-105 transition-all shadow-lg shadow-green-500/30">
                                 Quero uma Análise Gratuita
                             </a>
                         </div>
@@ -351,7 +353,7 @@
                 </div>
             </section>
 
-            <!-- PRICING -->
+            <!-- PRICING / ORÇAMENTO -->
             <section id="pricing" class="py-24 bg-white text-black">
                 <div class="container mx-auto px-6 max-w-5xl text-center">
                     <h2 class="text-3xl md:text-5xl font-black mb-6">PRONTO PARA ESCALAR?</h2>
@@ -436,6 +438,9 @@
                             <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Campanha de Pesquisa</li>
                             <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Youtube Ads</li>
                             <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Remarketing Inteligente</li>
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Google Shopping</li>
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Rede de Display</li>
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Otimização de CPC</li>
                         </ul>
                      </div>
                      <!-- Service Detail 2 -->
@@ -447,7 +452,72 @@
                             <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Feed & Stories</li>
                             <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Venda Direta (Catalog)</li>
                             <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Audiências Lookalike</li>
+                             <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Campanhas de WhatsApp</li>
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Geração de Leads</li>
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> A/B Testing de Criativos</li>
                         </ul>
+                     </div>
+                     <!-- Service Detail 3 -->
+                     <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100">
+                        <div class="w-16 h-16 bg-cyan-50 rounded-2xl flex items-center justify-center text-cyan-600 mb-6"><i data-lucide="globe" class="w-10 h-10"></i></div>
+                        <h3 class="text-2xl font-extrabold text-[#001B3D] mb-4">Desenvolvimento Web</h3>
+                        <p class="text-slate-600 mb-8 leading-relaxed text-lg">Seu site é seu cartão de visitas e sua maior ferramenta de vendas. Criamos experiências rápidas, modernas e focadas em conversão.</p>
+                        <ul class="grid md:grid-cols-2 gap-4">
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Landing Pages de Alta Conversão</li>
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Sites Institucionais</li>
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Lojas Virtuais (E-commerce)</li>
+                             <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Blogs e Portais</li>
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Otimização de Velocidade</li>
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Design Responsivo (Mobile First)</li>
+                        </ul>
+                     </div>
+                     <!-- Service Detail 4 -->
+                     <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100">
+                        <div class="w-16 h-16 bg-cyan-50 rounded-2xl flex items-center justify-center text-cyan-600 mb-6"><i data-lucide="search" class="w-10 h-10"></i></div>
+                        <h3 class="text-2xl font-extrabold text-[#001B3D] mb-4">SEO & Autoridade</h3>
+                        <p class="text-slate-600 mb-8 leading-relaxed text-lg">Construa um ativo de longo prazo. Otimizamos seu site para que o Google o entenda como a melhor resposta para as dúvidas dos seus clientes.</p>
+                        <ul class="grid md:grid-cols-2 gap-4">
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Auditoria Técnica</li>
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Pesquisa de Palavras-chave</li>
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Otimização On-Page</li>
+                             <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Link Building Ético</li>
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> SEO Local (Google Maps)</li>
+                            <li class="flex items-center gap-2 text-slate-700 font-medium"><i data-lucide="check-circle-2" class="text-cyan-500 w-5 h-5"></i> Produção de Conteúdo</li>
+                        </ul>
+                     </div>
+                </div>
+
+                <div class="container mx-auto px-6 pt-24">
+                     <div class="ocean-gradient p-12 rounded-3xl text-center text-white relative overflow-hidden">
+                        <h2 className="text-3xl font-bold mb-16 relative z-10 text-2xl font-bold mb-8">Nosso Processo de Trabalho</h2>
+                         <div class="grid md:grid-cols-4 gap-8 relative z-10">
+                            <div class="relative group">
+                                <div class="text-6xl font-black text-white/5 absolute -top-10 left-1/2 -translate-x-1/2 group-hover:text-cyan-400/10 transition-colors">01</div>
+                                <h4 class="text-xl font-bold mb-2 text-cyan-400">Imersão</h4>
+                                <p class="text-slate-400">Entendemos seu negócio, público e objetivos reais.</p>
+                            </div>
+                            <div class="relative group">
+                                <div class="text-6xl font-black text-white/5 absolute -top-10 left-1/2 -translate-x-1/2 group-hover:text-cyan-400/10 transition-colors">02</div>
+                                <h4 class="text-xl font-bold mb-2 text-cyan-400">Estratégia</h4>
+                                <p class="text-slate-400">Traçamos o plano tático para atingir suas metas.</p>
+                            </div>
+                            <div class="relative group">
+                                <div class="text-6xl font-black text-white/5 absolute -top-10 left-1/2 -translate-x-1/2 group-hover:text-cyan-400/10 transition-colors">03</div>
+                                <h4 class="text-xl font-bold mb-2 text-cyan-400">Execução</h4>
+                                <p class="text-slate-400">Colocamos as campanhas e tecnologias no ar.</p>
+                            </div>
+                            <div class="relative group">
+                                <div class="text-6xl font-black text-white/5 absolute -top-10 left-1/2 -translate-x-1/2 group-hover:text-cyan-400/10 transition-colors">04</div>
+                                <h4 class="text-xl font-bold mb-2 text-cyan-400">Escala</h4>
+                                <p class="text-slate-400">Analisamos dados e aumentamos o que traz lucro.</p>
+                            </div>
+                         </div>
+                         <div class="mt-20 relative z-10">
+                            <a href="https://api.whatsapp.com/send?phone=5511914716715" target="_blank" class="inline-flex items-center gap-3 bg-white text-[#001B3D] font-bold px-10 py-5 rounded-2xl hover:bg-cyan-400 transition-all text-xl">
+                                Iniciar meu Projeto
+                                <i data-lucide="arrow-right" class="w-6 h-6"></i>
+                            </a>
+                        </div>
                      </div>
                 </div>
             </section>
@@ -465,6 +535,9 @@
                         <h1 class="text-4xl md:text-6xl font-extrabold text-[#001B3D] mb-8 font-montserrat leading-tight">
                         Ajudando negócios a nadar contra a corrente da <span class="text-cyan-500 italic">invisibilidade.</span>
                         </h1>
+                        <p class="text-xl text-slate-600 leading-relaxed font-light mb-8">
+                            A Peixeweb não é apenas mais uma agência de marketing. Somos parceiros estratégicos de empreendedores que cansaram de "testar" e agora querem vender.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -485,6 +558,7 @@
                     <div class="order-1 md:order-2">
                         <h2 class="text-3xl font-extrabold text-[#001B3D] mb-6">Por que Peixeweb?</h2>
                         <p class="text-slate-600 mb-6 text-lg">No vasto oceano da internet, muitas empresas são como pequenos peixes perdidos. Nós criamos as correntes certas para você.</p>
+                        <p class="text-slate-600 mb-8 text-lg">Nosso nome carrega nossa essência: a fluidez da água (digital) aliada à agilidade do peixe (sua empresa) navegando na teia (web). Focamos no regional porque acreditamos que a proximidade gera confiança e resultados mais rápidos.</p>
                         <div class="space-y-4">
                             <div class="flex items-center gap-4 bg-slate-50 p-4 rounded-xl">
                                 <i data-lucide="shield-check" class="text-green-500 w-6 h-6"></i>
@@ -496,6 +570,53 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </section>
+            
+            <section class="py-24 bg-slate-50">
+                <div class="container mx-auto px-6">
+                  <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-[#001B3D]">Nossos Pilares</h2>
+                  </div>
+                  <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-lg hover:border-cyan-500/30 transition-all">
+                        <div class="text-cyan-500 mb-6"><i data-lucide="zap" class="w-8 h-8"></i></div>
+                        <h3 class="text-xl font-bold text-[#001B3D] mb-3">Agilidade Digital</h3>
+                        <p class="text-slate-600 leading-relaxed">O mercado muda em horas. Nós respondemos em minutos. Nossas campanhas são otimizadas diariamente para não perder oportunidades.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-lg hover:border-cyan-500/30 transition-all">
+                        <div class="text-cyan-500 mb-6"><i data-lucide="users" class="w-8 h-8"></i></div>
+                        <h3 class="text-xl font-bold text-[#001B3D] mb-3">Foco no Regional</h3>
+                        <p class="text-slate-600 leading-relaxed">Conhecemos a realidade do empreendedor local. Nossa linguagem e estratégia são adaptadas para o público da sua região.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-lg hover:border-cyan-500/30 transition-all">
+                        <div class="text-cyan-500 mb-6"><i data-lucide="shield-check" class="w-8 h-8"></i></div>
+                        <h3 class="text-xl font-bold text-[#001B3D] mb-3">Ética e Transparência</h3>
+                        <p class="text-slate-600 leading-relaxed">Acesso total às suas contas de anúncios. Sem taxas escondidas, sem contratos abusivos. Parceria de verdade.</p>
+                    </div>
+                  </div>
+                </div>
+            </section>
+            
+            <section class="py-24">
+                <div class="container mx-auto px-6">
+                  <div class="bg-[#001B3D] rounded-[50px] p-12 md:p-20 text-center relative overflow-hidden">
+                     <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+                     <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-8 relative z-10">
+                       Pronto para dominar o seu <span class="text-cyan-400">mercado?</span>
+                     </h2>
+                     <p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto relative z-10">
+                       Não deixe sua empresa à deriva. Vamos construir o motor de vendas que você sempre precisou.
+                     </p>
+                     <a 
+                       href="https://api.whatsapp.com/send?phone=5511914716715"
+                       target="_blank"
+                       className="inline-flex items-center gap-3 bg-cyan-500 text-[#001B3D] font-bold px-12 py-5 rounded-2xl hover:bg-cyan-400 transition-all text-xl relative z-10 hover:scale-105"
+                     >
+                       Agendar Consultoria Grátis
+                       <i data-lucide="rocket" class="w-6 h-6"></i>
+                     </a>
+                  </div>
                 </div>
             </section>
         </div>
