@@ -15,11 +15,12 @@ const ModuleCard: React.FC<{ num: string; title: string; desc: string; icon: Rea
 
 const Modules: React.FC = () => {
   return (
-    <section id="servicos" className="py-24 bg-black">
+    // Changed py-24 to pt-8 pb-24 to reduce top spacing
+    <section id="servicos" className="pt-8 pb-24 bg-black">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-black text-white mb-4 uppercase">O que você vai receber:</h2>
-          <div className="h-1 w-24 bg-yellow-500 mx-auto"></div>
+          <div className="h-1 w-24 bg-yellow-500 mx-auto rounded-full"></div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

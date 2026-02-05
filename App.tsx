@@ -63,9 +63,10 @@ const App: React.FC = () => {
         href="https://api.whatsapp.com/send?phone=5511914716715"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 flex items-center justify-center group"
+        className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white px-6 py-3 rounded-full shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group font-bold tracking-wide hover:shadow-green-500/50"
       >
-        <MessageCircle size={28} />
+        <MessageCircle size={24} />
+        Chat
       </a>
     </div>
   );

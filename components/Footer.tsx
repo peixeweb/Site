@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Instagram, Linkedin, ArrowUp } from 'lucide-react';
+import { Instagram, ArrowUp, Mail } from 'lucide-react';
 
 const Footer: React.FC<{ setView: any }> = () => {
   return (
@@ -16,14 +16,21 @@ const Footer: React.FC<{ setView: any }> = () => {
             Experiência de 03 anos
           </p>
         </div>
+
+        <div className="mb-8">
+           <a href="mailto:contato@peixeweb.com.br" className="inline-flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors text-lg font-medium">
+             <Mail size={20} />
+             contato@peixeweb.com.br
+           </a>
+        </div>
         
-        <div className="flex justify-center gap-6 mb-8">
-          <a href="https://www.instagram.com/peixeweb/" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-yellow-500 transition-colors">
-            <Instagram size={24} />
-          </a>
-          <a href="#" className="text-slate-500 hover:text-yellow-500 transition-colors">
-            <Linkedin size={24} />
-          </a>
+        <div className="mb-8">
+          <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-4">Redes Sociais:</h4>
+          <div className="flex justify-center gap-6">
+            <a href="https://www.instagram.com/peixeweb/" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-cyan-500 transition-colors">
+              <Instagram size={32} />
+            </a>
+          </div>
         </div>
 
         <div className="pt-8 border-t border-white/5 text-[10px] text-slate-600 uppercase font-bold tracking-[0.2em]">

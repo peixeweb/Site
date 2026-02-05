@@ -19,7 +19,8 @@ const Testimonial: React.FC<{ name: string; text: string }> = ({ name, text }) =
 
 const Proof: React.FC = () => {
   return (
-    <section id="resultados" className="py-24 bg-[#050505]">
+    // Changed py-24 to pt-24 pb-8 to reduce bottom spacing
+    <section id="resultados" className="pt-24 pb-8 bg-[#050505]">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-black text-white mb-4">RESULTADOS REAIS</h2>
