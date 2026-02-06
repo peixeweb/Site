@@ -29,16 +29,16 @@ const Proof: React.FC = () => {
 
         <div className="grid md:grid-cols-3 gap-8">
           <Testimonial 
-            name="Tiago M." 
+            name="Thiago M." 
             text="Sinceramente, essas aulas sobre estratégias de lances são épicas. Mudou meu jogo no Google Ads." 
           />
           <Testimonial 
-            name="Samir A." 
+            name="Angela S." 
             text="Só assisti a primeira aula e já parei de perder dinheiro. O suporte é fenomenal." 
           />
           <Testimonial 
             name="David G." 
-            text="Conteúdo direto ao ponto. Consegui mudar minha estrutura e as vendas começaram a cair." 
+            text="O Meta ADS, Através do Instagram Conseguiu mudar minha estrutura e as vendas começaram a cair na conta." 
           />
         </div>
       </div>

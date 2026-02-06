@@ -130,20 +130,26 @@
         <div id="view-home" class="view-section">
             
             <!-- HERO -->
+            <!-- Adjusted PT (increased to clear bigger header) and PB (kept small) -->
             <section id="home" class="relative pt-44 md:pt-52 pb-8 bg-black overflow-hidden border-b border-white/5">
                 
                 <!-- Background Images Layer -->
                 <div class="absolute inset-0 z-0 pointer-events-none select-none">
+                    <!-- Imagem Google Ads / Analytics (Esquerda) -->
                     <img 
                       src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070" 
                       alt="Google Ads Analytics" 
                       class="absolute top-0 left-0 w-2/3 h-full object-cover opacity-[0.08] mix-blend-luminosity -translate-x-1/4 rotate-3"
                     />
+                    
+                    <!-- Imagem Meta Ads / Mobile (Direita) -->
                     <img 
                       src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&q=80&w=1974" 
                       alt="Meta Ads Interface" 
                       class="absolute top-0 right-0 w-2/3 h-full object-cover opacity-[0.08] mix-blend-luminosity translate-x-1/4 -rotate-3"
                     />
+
+                    <!-- Gradientes de Fusão para manter o fundo preto predominante -->
                     <div class="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
                     <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black"></div>
                 </div>
@@ -159,6 +165,7 @@
                         <div class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed font-light max-w-xl mx-auto lg:mx-0">
                             <p>Não gaste dinheiro com "testes". Use a estratégia que vai trazer clientes e transforme cliques em lucro real.</p>
                             
+                            <!-- Texto de Destaque Adicionado -->
                             <div class="mt-6 p-4 bg-cyan-900/20 border-l-4 border-cyan-500 rounded-r-xl text-left backdrop-blur-sm">
                                 <p class="text-white font-bold text-xl md:text-2xl leading-tight">
                                     Você precisa de mais clientes? <br />
@@ -191,12 +198,22 @@
                         <div class="relative z-10 p-2 bg-white/5 rounded-[48px] backdrop-blur-sm border border-white/10">
                             <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=2426" alt="Especialistas analisando dados" class="rounded-[40px] grayscale group-hover:grayscale-0 transition-all duration-1000 shadow-2xl" />
                         </div>
+                        <!-- Floating badge -->
                         <div class="absolute -bottom-6 -left-6 z-20 bg-white p-6 rounded-3xl shadow-2xl hidden md:block animate-bounce-slow border-l-4 border-cyan-500">
                             <p class="text-[#001B3D] font-black text-2xl leading-none">+3 Anos</p>
                             <p class="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1">De Experiência</p>
                         </div>
                     </div>
                 </div>
+                <style>
+                    @keyframes bounce-slow {
+                        0%, 100% { transform: translateY(0); }
+                        50% { transform: translateY(-10px); }
+                    }
+                    .animate-bounce-slow {
+                        animation: bounce-slow 4s infinite ease-in-out;
+                    }
+                </style>
             </section>
 
             <!-- ABOUT -->
@@ -287,6 +304,7 @@
             </section>
 
             <!-- PROOF (Results) -->
+            <!-- Adjusted padding bottom to reduce space -->
             <section id="resultados" class="pt-24 pb-8 bg-[#050505]">
                 <div class="container mx-auto px-6">
                     <div class="text-center mb-16">
@@ -303,7 +321,7 @@
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-full flex items-center justify-center font-bold text-white shadow-lg">T</div>
                                 <div>
-                                    <p class="font-bold text-white">Tiago M.</p>
+                                    <p class="font-bold text-white">Thiago M.</p>
                                     <p class="text-xs text-slate-500 uppercase font-bold">E-commerce</p>
                                 </div>
                             </div>
@@ -314,9 +332,9 @@
                             </div>
                             <p class="text-slate-300 italic mb-6 leading-relaxed">"Só na primeira semana já parei de perder dinheiro. O suporte da equipe é simplesmente fenomenal."</p>
                             <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-full flex items-center justify-center font-bold text-white shadow-lg">S</div>
+                                <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-full flex items-center justify-center font-bold text-white shadow-lg">A</div>
                                 <div>
-                                    <p class="font-bold text-white">Samir A.</p>
+                                    <p class="font-bold text-white">Angela S.</p>
                                     <p class="text-xs text-slate-500 uppercase font-bold">Serviços</p>
                                 </div>
                             </div>
@@ -325,7 +343,7 @@
                              <div class="flex gap-1 text-yellow-400 mb-6">
                                 <i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i>
                             </div>
-                            <p class="text-slate-300 italic mb-6 leading-relaxed">"Conteúdo direto ao ponto. Consegui mudar minha estrutura e as vendas começaram a cair na conta."</p>
+                            <p class="text-slate-300 italic mb-6 leading-relaxed">"O Meta ADS, Através do Instagram Conseguiu mudar minha estrutura e as vendas começaram a cair na conta."</p>
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-full flex items-center justify-center font-bold text-white shadow-lg">D</div>
                                 <div>
@@ -339,6 +357,7 @@
             </section>
 
             <!-- MODULES -->
+            <!-- Adjusted padding top to reduce space -->
             <section id="servicos-section" class="pt-8 pb-24 bg-black">
                 <div class="container mx-auto px-6">
                     <div class="text-center mb-16">
