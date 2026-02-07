@@ -38,34 +38,25 @@ const Hero: React.FC<{ setView: (view: ViewState) => void }> = () => {
             A Única <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Agência de Tráfego</span> que escala seu lucro.
           </h1>
 
-          {/* Vídeo Container com Correção de Proporção e Crop */}
+          {/* Vídeo Container Corrigido */}
           <div className="w-full relative z-20 mb-10 group">
-             <div className="rounded-2xl overflow-hidden shadow-[0_0_40px_-10px_rgba(6,182,212,0.3)] border border-white/10 bg-black relative">
+             <div className="rounded-2xl overflow-hidden shadow-[0_0_40px_-10px_rgba(6,182,212,0.3)] border border-white/10 bg-black">
                 {/* 
-                   Padding-bottom 56.25% garante Aspect Ratio 16:9.
-                   Isso reserva o espaço exato na tela.
+                   Usando aspect-video (16/9) padrão do Tailwind para garantir proporção perfeita.
                 */}
-                <div className="relative w-full pt-[56.25%]">
+                <div className="relative w-full aspect-video">
                    <iframe 
-                     src="https://drive.google.com/file/d/1LXZjisKk1hT14xE2T3-p0DlmsPX2zAE8Ps_StDkmsqc/preview?autoplay=1" 
-                     // style: top negativo para esconder a barra
-                     // height: 100% + o tamanho da barra para compensar
-                     className="absolute left-0 w-full"
-                     style={{
-                        top: '-60px',
-                        height: 'calc(100% + 60px)',
-                        border: 'none'
-                     }}
-                     allow="autoplay; encrypted-media" 
+                     src="https://drive.google.com/file/d/1LXZjisKk1hT14xE2T3-p0DlmsPX2zAE8Ps_StDkmsqc/preview?autoplay=1&muted=1" 
+                     className="absolute top-0 left-0 w-full h-full"
+                     allow="autoplay *; encrypted-media; fullscreen; picture-in-picture"
+                     sandbox="allow-forms allow-scripts allow-same-origin allow-presentation"
                      allowFullScreen
+                     loading="eager"
                      title="Apresentação Peixeweb"
                    ></iframe>
+                   {/* Camada transparente reforçada para bloquear cliques na barra superior (botão pop-out) e título */}
+                   <div className="absolute top-0 left-0 w-full h-20 bg-transparent z-50 cursor-default"></div>
                 </div>
-                {/* 
-                   Bloqueio de interação na área superior para evitar cliques acidentais 
-                   na área onde estaria o botão de pop-out (caso o crop falhe visualmente em algum browser)
-                */}
-                <div className="absolute top-0 left-0 w-full h-16 bg-transparent z-30 pointer-events-auto"></div>
              </div>
           </div>
 
