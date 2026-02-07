@@ -28,19 +28,30 @@
       .ocean-gradient {
         background: linear-gradient(180deg, #001B3D 0%, #000000 100%);
       }
-      .animate-blob {
-        animation: blob 7s infinite;
-      }
-      .animation-delay-2000 {
-        animation-delay: 2s;
-      }
+      
+      /* Animations */
       @keyframes blob {
         0% { transform: translate(0px, 0px) scale(1); }
         33% { transform: translate(30px, -50px) scale(1.1); }
         66% { transform: translate(-20px, 20px) scale(0.9); }
         100% { transform: translate(0px, 0px) scale(1); }
       }
-      /* Hide scrollbar for cleaner UI */
+      .animate-blob {
+        animation: blob 7s infinite;
+      }
+      .animation-delay-2000 {
+        animation-delay: 2s;
+      }
+
+      @keyframes bounce-slow {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+      }
+      .animate-bounce-slow {
+          animation: bounce-slow 4s infinite ease-in-out;
+      }
+
+      /* Custom Scrollbar */
       ::-webkit-scrollbar {
         width: 8px;
       }
@@ -54,31 +65,586 @@
       ::-webkit-scrollbar-thumb:hover {
         background: #555;
       }
-      /* Utilities for JS toggles */
+
+      /* Utilities */
       .hidden { display: none; }
-      
-      @keyframes bounce-slow {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-      }
-      .animate-bounce-slow {
-          animation: bounce-slow 4s infinite ease-in-out;
-      }
+      .rotate-180 { transform: rotate(180deg); }
+      .transition-transform { transition-property: transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
     </style>
 <script type="importmap">
 {
   "imports": {
-    "react/": "https://esm.sh/react@^19.2.4/",
     "react": "https://esm.sh/react@^19.2.4",
-    "@google/genai": "https://esm.sh/@google/genai@^1.40.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
     "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0"
   }
 }
 </script>
 </head>
 <body class="selection:bg-cyan-500 selection:text-white">
-    <div id="root"></div>
-    <script type="module" src="./index.tsx"></script>
+
+    <!-- HEADER -->
+    <header id="main-header" class="fixed w-full top-0 z-50 transition-all duration-300 border-b border-slate-100 bg-white/95 py-4 backdrop-blur-md">
+        <div class="container mx-auto px-6 flex flex-col items-center relative">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center justify-center mb-4 lg:mb-2 transition-all duration-300">
+                <img 
+                    id="header-logo"
+                    src="https://lh3.googleusercontent.com/d/1UCMSOadfQEJ0-xsTNdVct6AMCkt-D3yr" 
+                    alt="Peixeweb Logo" 
+                    class="h-32 md:h-40 w-auto transition-all duration-300 hover:scale-105"
+                />
+            </a>
+
+            <!-- Menu Desktop -->
+            <nav class="hidden lg:flex items-center gap-10">
+                <a href="#beneficios" class="text-[#001B3D] hover:text-cyan-600 font-bold transition-colors text-xs uppercase tracking-[0.2em]">Benefícios</a>
+                <a href="#resultados" class="text-[#001B3D] hover:text-cyan-600 font-bold transition-colors text-xs uppercase tracking-[0.2em]">Resultados</a>
+                <a href="#pricing" class="text-[#001B3D] hover:text-cyan-600 font-bold transition-colors text-xs uppercase tracking-[0.2em]">Orçamento</a>
+                <a href="https://api.whatsapp.com/send?phone=5511914716715" target="_blank"
+                   class="bg-[#001B3D] text-white font-black px-8 py-3 rounded-xl text-xs uppercase tracking-widest hover:bg-cyan-500 hover:text-white transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-cyan-500/20">
+                    Falar no Whats
+                </a>
+            </nav>
+
+            <!-- Botão Mobile -->
+            <button id="mobile-menu-btn" class="lg:hidden absolute right-6 top-8 text-[#001B3D] p-2 hover:bg-slate-100 rounded-lg transition-colors">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+
+        <!-- Menu Mobile Overlay -->
+        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 w-full bg-white transition-all duration-300 overflow-hidden border-t border-slate-100 shadow-2xl py-8">
+            <nav class="flex flex-col items-center gap-6">
+                <a href="#beneficios" class="mobile-link text-[#001B3D] font-black uppercase tracking-widest text-lg hover:text-cyan-500 transition-colors">Benefícios</a>
+                <a href="#resultados" class="mobile-link text-[#001B3D] font-black uppercase tracking-widest text-lg hover:text-cyan-500 transition-colors">Resultados</a>
+                <a href="#pricing" class="mobile-link text-[#001B3D] font-black uppercase tracking-widest text-lg hover:text-cyan-500 transition-colors">Orçamento</a>
+                <a href="https://api.whatsapp.com/send?phone=5511914716715" target="_blank"
+                   class="bg-green-500 text-white font-black px-10 py-4 rounded-2xl text-sm uppercase tracking-widest shadow-lg mt-4">
+                    WhatsApp Direto
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="home" class="relative pt-44 md:pt-52 pb-8 bg-black overflow-hidden border-b border-white/5">
+            <!-- Background Images Layer -->
+            <div class="absolute inset-0 z-0 pointer-events-none select-none">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070" 
+                     alt="Google Ads Analytics" 
+                     class="absolute top-0 left-0 w-2/3 h-full object-cover opacity-[0.08] mix-blend-luminosity -translate-x-1/4 rotate-3" />
+                <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&q=80&w=1974" 
+                     alt="Meta Ads Interface" 
+                     class="absolute top-0 right-0 w-2/3 h-full object-cover opacity-[0.08] mix-blend-luminosity translate-x-1/4 -rotate-3" />
+                <div class="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black"></div>
+            </div>
+
+            <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+                <div class="text-center lg:text-left">
+                    <div class="inline-block py-2 px-4 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-black uppercase tracking-[0.3em] mb-8 animate-pulse">
+                        Agência Especialista em Escala
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-7xl font-black font-montserrat text-white leading-[1.1] mb-8">
+                        A Única <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Agência de Tráfego</span> que escala seu lucro.
+                    </h1>
+
+                    <!-- VÍDEO CONTAINER (Com Fix de Autoplay e Pop-out) -->
+                    <div class="w-full relative z-20 mb-10 group">
+                        <div class="rounded-2xl overflow-hidden shadow-[0_0_40px_-10px_rgba(6,182,212,0.3)] border border-white/10 bg-black">
+                            <div class="relative w-full aspect-video">
+                                <iframe 
+                                    src="https://drive.google.com/file/d/1LXZjisKk1hT14xE2T3-p0DlmsPX2zAE8Ps_StDkmsqc/preview?autoplay=1&muted=1" 
+                                    class="absolute top-0 left-0 w-full h-full"
+                                    allow="autoplay *; encrypted-media; fullscreen; picture-in-picture"
+                                    sandbox="allow-forms allow-scripts allow-same-origin allow-presentation"
+                                    allowFullScreen
+                                    loading="eager"
+                                    title="Apresentação Peixeweb"
+                                ></iframe>
+                                <!-- Camada transparente reforçada para bloquear cliques na barra superior (botão pop-out) -->
+                                <div class="absolute top-0 left-0 w-full h-20 bg-transparent z-50 cursor-default"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed font-light max-w-xl mx-auto lg:mx-0">
+                        <p>Não gaste dinheiro com "testes". Use a estratégia que vai trazer clientes e transforme cliques em lucro real.</p>
+                        <div class="mt-6 p-4 bg-cyan-900/20 border-l-4 border-cyan-500 rounded-r-xl text-left backdrop-blur-sm">
+                            <p class="text-white font-bold text-xl md:text-2xl leading-tight">
+                                Você precisa de mais clientes? <br />
+                                <span class="text-cyan-400">Eu tenho mais clientes para te trazer!</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col gap-5 mb-12">
+                        <div class="flex items-center gap-3 text-slate-300 justify-center lg:justify-start group">
+                            <i data-lucide="check-circle" class="text-cyan-500 w-6 h-6 group-hover:text-cyan-300 transition-colors"></i>
+                            <span class="font-medium group-hover:text-white transition-colors">Estratégias Avançadas de Google & Meta Ads</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-slate-300 justify-center lg:justify-start group">
+                            <i data-lucide="check-circle" class="text-cyan-500 w-6 h-6 group-hover:text-cyan-300 transition-colors"></i>
+                            <span class="font-medium group-hover:text-white transition-colors">Foco total em ROI e Conversão Validada</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#pricing"
+                           class="inline-block bg-[#28a745] hover:bg-[#218838] text-white font-black px-12 py-6 rounded-2xl text-xl uppercase tracking-tighter transition-all transform hover:scale-105 shadow-2xl shadow-green-500/30">
+                            Quero Vender Mais Agora
+                        </a>
+                    </div>
+                    <p class="text-[10px] text-slate-500 mt-6 uppercase font-bold tracking-[0.4em] opacity-50">Sua jornada rumo ao topo começa aqui</p>
+                </div>
+
+                <div class="relative group">
+                    <div class="absolute -inset-10 bg-cyan-500/20 blur-[120px] rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-1000"></div>
+                    <div class="relative z-10 p-2 bg-white/5 rounded-[48px] backdrop-blur-sm border border-white/10">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=2426" 
+                             alt="Especialistas analisando dados" 
+                             class="relative z-10 rounded-[40px] grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl" />
+                    </div>
+                    <!-- Floating badge -->
+                    <div class="absolute -bottom-6 -left-6 z-20 bg-white p-6 rounded-3xl shadow-2xl hidden md:block animate-bounce-slow border-l-4 border-cyan-500">
+                        <p class="text-[#001B3D] font-black text-2xl leading-none">+3 Anos</p>
+                        <p class="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1">De Experiência</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="sobre" class="py-24 bg-white overflow-hidden relative text-black">
+            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none">
+                <div class="absolute left-0 top-0 w-96 h-96 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+                <div class="absolute right-0 bottom-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+            </div>
+
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="max-w-4xl mx-auto text-center">
+                    <span class="text-cyan-500 font-bold tracking-widest uppercase text-sm mb-4 block">Quem Somos</span>
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-[#001B3D] mb-8 leading-tight">
+                        Somos novos no mercado, mas experientes no <span class="text-cyan-500 underline decoration-cyan-500/30 underline-offset-8">sucesso do cliente.</span>
+                    </h2>
+                    <p class="text-lg text-slate-600 mb-12 leading-relaxed">
+                        A <strong>Peixeweb</strong> nasceu com o propósito de democratizar o marketing digital de alta performance. Somos uma agência jovem, ágil e movida por resultados concretos.
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-6 mb-12">
+                        <div class="flex gap-4 text-left bg-slate-50 p-6 rounded-2xl border border-slate-100 transition-all hover:shadow-md">
+                            <div class="mt-1 shrink-0"><i data-lucide="check-circle-2" class="text-cyan-500 w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-[#001B3D] text-lg mb-1">Estratégia Sob Medida</h4>
+                                <p class="text-slate-600">Não acreditamos em fórmulas prontas. Cada negócio recebe uma análise profunda antes da execução.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 text-left bg-slate-50 p-6 rounded-2xl border border-slate-100 transition-all hover:shadow-md">
+                            <div class="mt-1 shrink-0"><i data-lucide="check-circle-2" class="text-cyan-500 w-6 h-6"></i></div>
+                            <div>
+                                <h4 class="font-bold text-[#001B3D] text-lg mb-1">Transparência Total</h4>
+                                <p class="text-slate-600">Relatórios claros e diretos. Você sabe exatamente onde seu dinheiro está sendo investido.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 space-x-6 flex justify-center items-center">
+                       <a href="https://fishweb.my.canva.site/peixeweb" target="_blank" class="inline-flex items-center gap-2 font-bold text-cyan-600 hover:text-cyan-700 transition-colors group text-lg">
+                           Ver nosso portfólio completo
+                           <span class="group-hover:translate-x-1 transition-transform">
+                               <i data-lucide="rocket" class="w-5 h-5"></i>
+                           </span>
+                       </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BENEFITS SECTION -->
+        <section id="beneficios" class="py-24 bg-white text-black border-t border-slate-100">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-5xl font-black mb-8 leading-tight text-[#001B3D]">
+                            Com a <span class="text-yellow-600">Peixeweb</span> você será capaz de:
+                        </h2>
+                        <div class="space-y-2">
+                            <div class="flex items-start gap-4 mb-6">
+                                <div class="mt-1 bg-yellow-500 rounded-full p-1 text-black"><i data-lucide="zap" class="w-4 h-4 fill-current"></i></div>
+                                <p class="text-lg font-bold text-slate-700">CRIAR CAMPANHAS DO JEITO CERTO, passo a passo, atraindo os melhores clientes.</p>
+                            </div>
+                            <div class="flex items-start gap-4 mb-6">
+                                <div class="mt-1 bg-yellow-500 rounded-full p-1 text-black"><i data-lucide="zap" class="w-4 h-4 fill-current"></i></div>
+                                <p class="text-lg font-bold text-slate-700">ESCALAR SEUS RESULTADOS e construir um marketing sólido.</p>
+                            </div>
+                            <div class="flex items-start gap-4 mb-6">
+                                <div class="mt-1 bg-yellow-500 rounded-full p-1 text-black"><i data-lucide="zap" class="w-4 h-4 fill-current"></i></div>
+                                <p class="text-lg font-bold text-slate-700">ACELERAR O CRESCIMENTO DA EMPRESA sem medo de desperdiçar orçamento.</p>
+                            </div>
+                            <div class="flex items-start gap-4 mb-6">
+                                <div class="mt-1 bg-yellow-500 rounded-full p-1 text-black"><i data-lucide="zap" class="w-4 h-4 fill-current"></i></div>
+                                <p class="text-lg font-bold text-slate-700">UTILIZAR AS FERRAMENTAS MAIS ATUAIS, incluindo Inteligência Artificial.</p>
+                            </div>
+                        </div>
+                        <a href="#pricing" class="mt-8 inline-block bg-[#28a745] text-white px-8 py-4 rounded-xl font-black uppercase text-center hover:scale-105 transition-all shadow-lg shadow-green-500/30">
+                            Quero uma Análise Gratuita
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=2426" class="rounded-2xl shadow-xl hover:scale-[1.02] transition-transform duration-500" alt="Métricas" />
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2070" class="rounded-2xl shadow-xl mt-8 hover:scale-[1.02] transition-transform duration-500" alt="Dashboard" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROOF SECTION -->
+        <section id="resultados" class="pt-24 pb-8 bg-[#050505]">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-5xl font-black text-white mb-4">RESULTADOS REAIS</h2>
+                    <p class="text-yellow-500 font-bold">Vejam o que dizem quem já aplica nosso método</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                        <div class="flex gap-1 text-yellow-500 mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-slate-300 italic mb-6">"Sinceramente, essas aulas sobre estratégias de lances são épicas. Mudou meu jogo no Google Ads."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center font-bold text-black">T</div>
+                            <p class="font-bold text-white">Thiago M.</p>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                        <div class="flex gap-1 text-yellow-500 mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-slate-300 italic mb-6">"Só assisti a primeira aula e já parei de perder dinheiro. O suporte é fenomenal."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center font-bold text-black">A</div>
+                            <p class="font-bold text-white">Angela S.</p>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                        <div class="flex gap-1 text-yellow-500 mb-4">
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        </div>
+                        <p class="text-slate-300 italic mb-6">"O Meta ADS, Através do Instagram Conseguiu mudar minha estrutura e as vendas começaram a cair na conta."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center font-bold text-black">D</div>
+                            <p class="font-bold text-white">David G.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MODULES SECTION -->
+        <section class="pt-8 pb-24 bg-black">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-5xl font-black text-white mb-4 uppercase">O que você vai receber:</h2>
+                    <div class="h-1 w-24 bg-yellow-500 mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Module 1 -->
+                    <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="text-yellow-500 group-hover:scale-110 transition-transform"><i data-lucide="target" class="w-8 h-8"></i></div>
+                            <span class="text-white/20 font-black text-2xl">01</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tighter">Google Ads</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Domine a rede de pesquisa e apareça para quem já quer comprar seu produto agora.</p>
+                    </div>
+                    <!-- Module 2 -->
+                    <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="text-yellow-500 group-hover:scale-110 transition-transform"><i data-lucide="instagram" class="w-8 h-8"></i></div>
+                            <span class="text-white/20 font-black text-2xl">02</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tighter">Meta Ads</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Crie desejo e gere leads qualificados através do Instagram e Facebook de forma profissional.</p>
+                    </div>
+                    <!-- Module 3 -->
+                    <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="text-yellow-500 group-hover:scale-110 transition-transform"><i data-lucide="layout" class="w-8 h-8"></i></div>
+                            <span class="text-white/20 font-black text-2xl">03</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tighter">Páginas de Alta Conversão</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Design focado em vendas. Transformamos seu site em um vendedor que trabalha 24h.</p>
+                    </div>
+                    <!-- Module 4 -->
+                    <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="text-yellow-500 group-hover:scale-110 transition-transform"><i data-lucide="trending-up" class="w-8 h-8"></i></div>
+                            <span class="text-white/20 font-black text-2xl">04</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tighter">Estratégia de Escala</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Aprenda a analisar métricas e aumentar o investimento onde o lucro é garantido.</p>
+                    </div>
+                    <!-- Module 5 -->
+                    <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="text-yellow-500 group-hover:scale-110 transition-transform"><i data-lucide="shopping-bag" class="w-8 h-8"></i></div>
+                            <span class="text-white/20 font-black text-2xl">05</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tighter">Google Shopping</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Exponha seus produtos na vitrine do Google e aumente suas vendas de e-commerce.</p>
+                    </div>
+                    <!-- Module 6 -->
+                    <div class="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="text-yellow-500 group-hover:scale-110 transition-transform"><i data-lucide="search" class="w-8 h-8"></i></div>
+                            <span class="text-white/20 font-black text-2xl">06</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 text-white uppercase tracking-tighter">SEO & Inteligência</h3>
+                        <p class="text-slate-500 text-sm leading-relaxed">Fique orgânico e utilize IA para produzir conteúdos que vendem mais rápido.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING SECTION -->
+        <section id="pricing" class="py-24 bg-white text-black">
+            <div class="container mx-auto px-6 max-w-5xl text-center">
+                <h2 class="text-3xl md:text-5xl font-black mb-6 text-[#001B3D]">PRONTO PARA ESCALAR?</h2>
+                <p className="text-xl text-slate-600 mb-12 max-w-2xl mx-auto">
+                    Não acreditamos em pacotes genéricos. Cada negócio tem um desafio único e merece uma estratégia personalizada.
+                </p>
+                
+                <div class="bg-[#111] text-white rounded-[40px] p-8 md:p-12 border-4 border-yellow-500 shadow-2xl relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+                    <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                        <div class="text-left space-y-6">
+                            <h3 class="text-2xl font-bold text-yellow-500 uppercase tracking-wide">O que vamos fazer:</h3>
+                            <ul class="space-y-5">
+                                <li class="flex items-center gap-4">
+                                    <i data-lucide="check-circle-2" class="text-yellow-500 shrink-0 w-6 h-6"></i>
+                                    <span class="font-medium text-lg">Análise profunda do seu negócio</span>
+                                </li>
+                                <li class="flex items-center gap-4">
+                                    <i data-lucide="check-circle-2" class="text-yellow-500 shrink-0 w-6 h-6"></i>
+                                    <span class="font-medium text-lg">Definição de canais de tráfego</span>
+                                </li>
+                                <li class="flex items-center gap-4">
+                                    <i data-lucide="check-circle-2" class="text-yellow-500 shrink-0 w-6 h-6"></i>
+                                    <span class="font-medium text-lg">Planejamento de investimento</span>
+                                </li>
+                                <li class="flex items-center gap-4">
+                                    <i data-lucide="check-circle-2" class="text-yellow-500 shrink-0 w-6 h-6"></i>
+                                    <span class="font-medium text-lg">Projeção de resultados reais</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="text-center md:text-left flex flex-col justify-center h-full">
+                            <p class="text-slate-300 mb-8 text-lg leading-relaxed">
+                                Fale diretamente com um de nossos estrategistas e receba um plano de ação para os próximos 30 dias.
+                            </p>
+                            <a href="https://api.whatsapp.com/send?phone=5511914716715" target="_blank" class="block w-full bg-[#25D366] hover:bg-[#20bd5a] py-6 rounded-2xl text-xl font-black uppercase tracking-tight transform hover:scale-105 transition-all mb-6 flex items-center justify-center gap-3 shadow-lg shadow-green-900/20">
+                                Fazer Análises
+                                <i data-lucide="arrow-right" class="w-6 h-6"></i>
+                            </a>
+                            <div class="flex items-center justify-center md:justify-start gap-2 text-sm text-slate-500">
+                                <i data-lucide="shield-check" class="text-yellow-500 w-5 h-5"></i>
+                                <span class="uppercase font-bold tracking-wider">Sem compromisso</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section class="py-24 bg-black text-white border-t border-white/5">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <h2 class="text-3xl md:text-5xl font-black text-center mb-4">AINDA COM DÚVIDA?</h2>
+                <p class="text-center text-slate-400 mb-16 max-w-xl mx-auto">
+                    Respostas diretas para quem não tem tempo a perder e quer escalar o faturamento da empresa.
+                </p>
+                <div class="space-y-2" id="faq-container">
+                    <!-- FAQ Items will be handled by JS for toggling, but writing structure here -->
+                    
+                    <!-- Item 1 -->
+                    <div class="border-b border-white/10 faq-item">
+                        <button class="w-full py-6 flex justify-between items-center text-left hover:text-cyan-500 transition-colors group faq-btn">
+                            <span class="text-lg font-bold uppercase tracking-tight group-hover:text-cyan-400 transition-colors">Quanto tempo demora para ver o dinheiro voltar?</span>
+                            <i data-lucide="chevron-down" class="text-slate-500 group-hover:text-cyan-500 transition-transform duration-300"></i>
+                        </button>
+                        <div class="hidden pb-6 text-slate-300 leading-relaxed text-base border-l-2 border-cyan-500/30 pl-4 ml-1 faq-content">
+                            Diferente de SEO ou Branding que levam meses, o Tráfego Pago coloca sua empresa na frente de quem está comprando agora. Muitas vezes geramos leads qualificados nas primeiras 48h. Nosso foco é acelerar seu ROI para que o próprio lucro pague a campanha.
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="border-b border-white/10 faq-item">
+                        <button class="w-full py-6 flex justify-between items-center text-left hover:text-cyan-500 transition-colors group faq-btn">
+                            <span class="text-lg font-bold uppercase tracking-tight group-hover:text-cyan-400 transition-colors">Meu site é antigo ou não tenho um. Isso impede?</span>
+                            <i data-lucide="chevron-down" class="text-slate-500 group-hover:text-cyan-500 transition-transform duration-300"></i>
+                        </button>
+                        <div class="hidden pb-6 text-slate-300 leading-relaxed text-base border-l-2 border-cyan-500/30 pl-4 ml-1 faq-content">
+                            De forma alguma. Se seu site não converte, nós resolvemos. Parte da nossa estratégia inclui a criação de Landing Pages de Alta Conversão, desenhadas especificamente para transformar visitantes em pedidos de orçamento.
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="border-b border-white/10 faq-item">
+                        <button class="w-full py-6 flex justify-between items-center text-left hover:text-cyan-500 transition-colors group faq-btn">
+                            <span class="text-lg font-bold uppercase tracking-tight group-hover:text-cyan-400 transition-colors">Tenho medo de investir e não ter retorno. Qual a garantia?</span>
+                            <i data-lucide="chevron-down" class="text-slate-500 group-hover:text-cyan-500 transition-transform duration-300"></i>
+                        </button>
+                        <div class="hidden pb-6 text-slate-300 leading-relaxed text-base border-l-2 border-cyan-500/30 pl-4 ml-1 faq-content">
+                            O tráfego é matemática. Não exigimos verbas milionárias para começar. Definimos um orçamento inicial seguro para validar os criativos. Assim que o lucro começar a entrar e o CPA estiver validado, nós escalamos.
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="border-b border-white/10 faq-item">
+                        <button class="w-full py-6 flex justify-between items-center text-left hover:text-cyan-500 transition-colors group faq-btn">
+                            <span class="text-lg font-bold uppercase tracking-tight group-hover:text-cyan-400 transition-colors">Como funciona o acompanhamento?</span>
+                            <i data-lucide="chevron-down" class="text-slate-500 group-hover:text-cyan-500 transition-transform duration-300"></i>
+                        </button>
+                        <div class="hidden pb-6 text-slate-300 leading-relaxed text-base border-l-2 border-cyan-500/30 pl-4 ml-1 faq-content">
+                            Esqueça robôs. Você terá acesso direto ao estrategista responsável via WhatsApp e reuniões periódicas. Não somos apenas executores de anúncios, somos o braço direito de crescimento comercial da sua empresa.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white py-12 border-t border-white/10">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-8">
+               <img src="https://lh3.googleusercontent.com/d/1UCMSOadfQEJ0-xsTNdVct6AMCkt-D3yr" alt="Peixeweb Logo" class="h-12 md:h-16 w-auto mx-auto mb-4 opacity-90 brightness-110"/>
+              <p class="text-slate-500 mt-4 text-sm max-w-md mx-auto font-medium tracking-wide uppercase">
+                Experiência de 03 anos
+              </p>
+            </div>
+
+            <div class="mb-8">
+               <a href="mailto:contato@peixeweb.com.br" class="inline-flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors text-lg font-medium">
+                 <i data-lucide="mail" class="w-5 h-5"></i>
+                 contato@peixeweb.com.br
+               </a>
+            </div>
+            
+            <div class="mb-8">
+              <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-4">Redes Sociais:</h4>
+              <div class="flex justify-center gap-6">
+                <a href="https://www.instagram.com/peixeweb/" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-cyan-500 transition-colors">
+                  <i data-lucide="instagram" class="w-8 h-8"></i>
+                </a>
+              </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/5 text-[10px] text-slate-600 uppercase font-bold tracking-[0.2em]">
+              <p>© 2025 PEIXEWEB AGÊNCIA DIGITAL. TODOS OS DIREITOS RESERVADOS.</p>
+            </div>
+            
+            <a href="#home" class="inline-flex items-center gap-2 text-slate-500 hover:text-white transition-colors mt-8 text-xs font-bold uppercase tracking-widest">
+              <i data-lucide="arrow-up" class="w-3 h-3"></i> Voltar ao Topo
+            </a>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp CTA -->
+    <a
+      href="https://api.whatsapp.com/send?phone=5511914716715"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white px-6 py-3 rounded-full shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group font-bold tracking-wide hover:shadow-green-500/50"
+    >
+      <i data-lucide="message-circle" class="w-6 h-6"></i>
+      Chat
+    </a>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Header Scroll Effect
+        const header = document.getElementById('main-header');
+        const headerLogo = document.getElementById('header-logo');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('bg-white', 'shadow-xl', 'py-2');
+                header.classList.remove('bg-white/95', 'py-4', 'backdrop-blur-md');
+                
+                // Shrink Logo
+                headerLogo.classList.remove('h-32', 'md:h-40');
+                headerLogo.classList.add('h-16', 'md:h-20');
+            } else {
+                header.classList.remove('bg-white', 'shadow-xl', 'py-2');
+                header.classList.add('bg-white/95', 'py-4', 'backdrop-blur-md');
+                
+                // Grow Logo
+                headerLogo.classList.add('h-32', 'md:h-40');
+                headerLogo.classList.remove('h-16', 'md:h-20');
+            }
+        });
+
+        // FAQ Accordion Logic
+        const faqBtns = document.querySelectorAll('.faq-btn');
+        
+        faqBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('[data-lucide="chevron-down"]');
+                
+                // Toggle Hidden
+                content.classList.toggle('hidden');
+                
+                // Rotate Icon
+                if (content.classList.contains('hidden')) {
+                    icon.classList.remove('rotate-180');
+                } else {
+                    icon.classList.add('rotate-180');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
