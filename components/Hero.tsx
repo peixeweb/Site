@@ -38,15 +38,22 @@ const Hero: React.FC<{ setView: (view: ViewState) => void }> = () => {
             A Única <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Agência de Tráfego</span> que escala seu lucro.
           </h1>
 
-          {/* Vídeo Inserido */}
-          <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-[0_0_40px_-10px_rgba(6,182,212,0.3)] border border-white/10 mb-10 relative z-20">
-            <iframe 
-              src="https://drive.google.com/file/d/1LXZjisKk1hT14xE2T3-p0DlmsPX2zAE8Ps_StDkmsqc/preview" 
-              className="w-full h-full" 
-              allow="autoplay; encrypted-media" 
-              allowFullScreen
-              title="Apresentação Peixeweb"
-            ></iframe>
+          {/* Vídeo Inserido com Ajuste de Recorte (Crop) para esconder botão de saída */}
+          <div className="w-full aspect-video rounded-2xl overflow-hidden shadow-[0_0_40px_-10px_rgba(6,182,212,0.3)] border border-white/10 mb-10 relative z-20 group">
+            {/* Wrapper para controle de overflow e posicionamento */}
+            <div className="relative w-full h-full overflow-hidden">
+               <iframe 
+                 src="https://drive.google.com/file/d/1LXZjisKk1hT14xE2T3-p0DlmsPX2zAE8Ps_StDkmsqc/preview?autoplay=1" 
+                 // -mt-[55px] puxa o vídeo para cima escondendo a barra do Drive
+                 // h-[calc(100%+55px)] compensa a altura perdida
+                 className="absolute top-0 left-0 w-full h-[calc(100%+55px)] -mt-[55px]" 
+                 allow="autoplay; encrypted-media" 
+                 allowFullScreen
+                 title="Apresentação Peixeweb"
+               ></iframe>
+            </div>
+            {/* Bloqueio de clique invisível na parte superior para garantir que não cliquem em áreas vazias se o crop falhar em algum navegador */}
+            <div className="absolute top-0 left-0 w-full h-12 bg-transparent pointer-events-auto z-30"></div>
           </div>
 
           <div className="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed font-light max-w-xl mx-auto lg:mx-0">
