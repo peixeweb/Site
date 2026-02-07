@@ -3,9 +3,9 @@ import React from 'react';
 import { Layout, Search, Instagram, TrendingUp, ShoppingBag, Target } from 'lucide-react';
 
 const ModuleCard: React.FC<{ num: string; title: string; desc: string; icon: React.ReactNode }> = ({ num, title, desc, icon }) => (
-  <div className="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-yellow-500/50 transition-all group">
+  <div className="bg-[#111] p-8 rounded-2xl border border-white/10 hover:border-emerald-500/50 transition-all group">
     <div className="flex justify-between items-start mb-6">
-      <div className="text-yellow-500 group-hover:scale-110 transition-transform">{icon}</div>
+      <div className="text-emerald-400 group-hover:scale-110 transition-transform">{icon}</div>
       <span className="text-white/20 font-black text-2xl">{num}</span>
     </div>
     <h3 className="text-xl font-bold mb-4 text-white uppercase tracking-tighter">{title}</h3>
@@ -20,7 +20,7 @@ const Modules: React.FC = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-black text-white mb-4 uppercase">O que você vai receber:</h2>
-          <div className="h-1 w-24 bg-yellow-500 mx-auto rounded-full"></div>
+          <div className="h-1 w-24 bg-gradient-to-r from-emerald-500 to-blue-500 mx-auto rounded-full"></div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

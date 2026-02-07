@@ -25,7 +25,7 @@ const App: React.FC = () => {
   }, [currentView]);
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-yellow-500 selection:text-black">
+    <div className="min-h-screen bg-black text-white selection:bg-emerald-500 selection:text-white">
       {/* Fix: Pass the current view state and its setter to the Header */}
       <Header setView={setView} currentView={currentView} />
       

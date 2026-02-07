@@ -78,7 +78,7 @@ const Header: React.FC<HeaderProps> = ({ setView, currentView }) => {
               key={link.name}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-[#001B3D] hover:text-cyan-600 font-bold transition-colors text-xs uppercase tracking-[0.2em]"
+              className="text-[#001B3D] hover:text-emerald-600 font-bold transition-colors text-xs uppercase tracking-[0.2em]"
             >
               {link.name}
             </a>
@@ -86,7 +86,7 @@ const Header: React.FC<HeaderProps> = ({ setView, currentView }) => {
           <a
             href="https://api.whatsapp.com/send?phone=5511914716715"
             target="_blank"
-            className="bg-[#001B3D] text-white font-black px-8 py-3 rounded-xl text-xs uppercase tracking-widest hover:bg-cyan-500 hover:text-white transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-cyan-500/20"
+            className="bg-[#001B3D] text-white font-black px-8 py-3 rounded-xl text-xs uppercase tracking-widest hover:bg-emerald-600 hover:text-white transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-emerald-500/20"
           >
             Falar no Whats
           </a>
@@ -110,7 +110,7 @@ const Header: React.FC<HeaderProps> = ({ setView, currentView }) => {
               key={link.name}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-[#001B3D] font-black uppercase tracking-widest text-lg hover:text-cyan-500 transition-colors"
+              className="text-[#001B3D] font-black uppercase tracking-widest text-lg hover:text-emerald-500 transition-colors"
             >
               {link.name}
             </a>

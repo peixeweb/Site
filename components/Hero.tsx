@@ -31,16 +31,16 @@ const Hero: React.FC<{ setView: (view: ViewState) => void }> = () => {
 
       <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
         <div className="text-center lg:text-left">
-          <div className="inline-block py-2 px-4 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-black uppercase tracking-[0.3em] mb-8 animate-pulse">
+          <div className="inline-block py-2 px-4 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-xs font-black uppercase tracking-[0.3em] mb-8 animate-pulse">
             Agência Especialista em Escala
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-black font-montserrat text-white leading-[1.1] mb-8">
-            A Única <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Agência de Tráfego</span> que escala seu lucro.
+            A Única <span className="text-emerald-500">Agência</span> de <span className="text-[#2a8bce]">Tráfego</span> que escala seu <span className="text-[#2a8bce]">lucro</span>.
           </h1>
 
           {/* Vídeo Container Corrigido */}
           <div className="w-full relative z-20 mb-10 group">
-             <div className="rounded-2xl overflow-hidden shadow-[0_0_40px_-10px_rgba(6,182,212,0.3)] border border-white/10 bg-black">
+             <div className="rounded-2xl overflow-hidden shadow-[0_0_40px_-10px_rgba(42,139,206,0.3)] border border-white/10 bg-black">
                 {/* 
                    Usando aspect-video (16/9) padrão do Tailwind para garantir proporção perfeita.
                 */}
@@ -64,21 +64,21 @@ const Hero: React.FC<{ setView: (view: ViewState) => void }> = () => {
             <p>Não gaste dinheiro com "testes". Use a estratégia que vai trazer clientes e transforme cliques em lucro real.</p>
             
             {/* Texto de Destaque Adicionado */}
-            <div className="mt-6 p-4 bg-cyan-900/20 border-l-4 border-cyan-500 rounded-r-xl text-left backdrop-blur-sm">
+            <div className="mt-6 p-4 bg-[#2a8bce]/10 border-l-4 border-[#2a8bce] rounded-r-xl text-left backdrop-blur-sm">
               <p className="text-white font-bold text-xl md:text-2xl leading-tight">
                 Você precisa de mais clientes? <br />
-                <span className="text-cyan-400">Eu tenho mais clientes para te trazer!</span>
+                <span className="text-emerald-400">Eu tenho mais clientes para te trazer!</span>
               </p>
             </div>
           </div>
           
           <div className="flex flex-col gap-5 mb-12">
             <div className="flex items-center gap-3 text-slate-300 justify-center lg:justify-start group">
-              <CheckCircle className="text-cyan-500 w-6 h-6 group-hover:text-cyan-300 transition-colors" />
+              <CheckCircle className="text-emerald-500 w-6 h-6 group-hover:text-emerald-300 transition-colors" />
               <span className="font-medium group-hover:text-white transition-colors">Estratégias Avançadas de Google & Meta Ads</span>
             </div>
             <div className="flex items-center gap-3 text-slate-300 justify-center lg:justify-start group">
-              <CheckCircle className="text-cyan-500 w-6 h-6 group-hover:text-cyan-300 transition-colors" />
+              <CheckCircle className="text-[#2a8bce] w-6 h-6 group-hover:text-cyan-300 transition-colors" />
               <span className="font-medium group-hover:text-white transition-colors">Foco total em ROI e Conversão Validada</span>
             </div>
           </div>
@@ -95,7 +95,7 @@ const Hero: React.FC<{ setView: (view: ViewState) => void }> = () => {
         </div>
 
         <div className="relative group">
-          <div className="absolute -inset-10 bg-cyan-500/20 blur-[120px] rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-1000"></div>
+          <div className="absolute -inset-10 bg-[#2a8bce]/20 blur-[120px] rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-1000"></div>
           <div className="relative z-10 p-2 bg-white/5 rounded-[48px] backdrop-blur-sm border border-white/10">
             <img 
               src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=2426" 
@@ -104,7 +104,7 @@ const Hero: React.FC<{ setView: (view: ViewState) => void }> = () => {
             />
           </div>
           {/* Floating badge */}
-          <div className="absolute -bottom-6 -left-6 z-20 bg-white p-6 rounded-3xl shadow-2xl hidden md:block animate-bounce-slow border-l-4 border-cyan-500">
+          <div className="absolute -bottom-6 -left-6 z-20 bg-white p-6 rounded-3xl shadow-2xl hidden md:block animate-bounce-slow border-l-4 border-[#2a8bce]">
              <p className="text-[#001B3D] font-black text-2xl leading-none">+3 Anos</p>
              <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1">De Experiência</p>
           </div>

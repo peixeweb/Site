@@ -1,4 +1,3 @@
-
 // Import React to provide the React namespace for type definitions
 import React from 'react';
 

@@ -8,8 +8,8 @@ interface DetailedServicesProps {
 }
 
 const ServiceDetail: React.FC<{ icon: React.ReactNode, title: string, description: string, list: string[] }> = ({ icon, title, description, list }) => (
-  <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100 hover:shadow-cyan-200/20 transition-all">
-    <div className="w-16 h-16 bg-cyan-50 rounded-2xl flex items-center justify-center text-cyan-600 mb-6">
+  <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100 hover:shadow-emerald-200/20 transition-all">
+    <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mb-6">
       {icon}
     </div>
     <h3 className="text-2xl font-extrabold text-[#001B3D] mb-4">{title}</h3>
@@ -19,7 +19,7 @@ const ServiceDetail: React.FC<{ icon: React.ReactNode, title: string, descriptio
     <ul className="grid md:grid-cols-2 gap-4">
       {list.map((item, i) => (
         <li key={i} className="flex items-center gap-2 text-slate-700 font-medium">
-          <CheckCircle2 size={18} className="text-cyan-500" />
+          <CheckCircle2 size={18} className="text-emerald-500" />
           {item}
         </li>
       ))}
@@ -35,7 +35,7 @@ const DetailedServices: React.FC<DetailedServicesProps> = ({ setView }) => {
         <div className="container mx-auto">
           <button 
             onClick={() => setView('home')}
-            className="flex items-center gap-2 text-cyan-400 hover:text-white transition-colors font-bold text-sm uppercase tracking-widest"
+            className="flex items-center gap-2 text-emerald-400 hover:text-white transition-colors font-bold text-sm uppercase tracking-widest"
           >
             <ArrowLeft size={18} />
             Voltar para Home
@@ -47,7 +47,7 @@ const DetailedServices: React.FC<DetailedServicesProps> = ({ setView }) => {
       <section className="pb-20 pt-12 bg-[#001B3D] text-white text-center">
         <div className="container mx-auto px-6">
           <h1 className="text-4xl md:text-6xl font-extrabold font-montserrat mb-6">
-            Nossas <span className="text-cyan-400">Soluções</span> Digitais
+            Nossas <span className="text-emerald-400">Soluções</span> Digitais
           </h1>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto font-light">
             Estratégias personalizadas para tirar sua empresa da invisibilidade e colocá-la na frente dos seus melhores clientes.
@@ -128,10 +128,10 @@ const DetailedServices: React.FC<DetailedServicesProps> = ({ setView }) => {
               { step: '04', title: 'Escala', desc: 'Analisamos dados e aumentamos o que traz lucro.' },
             ].map((item, idx) => (
               <div key={idx} className="relative group">
-                <div className="text-6xl font-black text-white/5 absolute -top-10 left-1/2 -translate-x-1/2 group-hover:text-cyan-400/10 transition-colors">
+                <div className="text-6xl font-black text-white/5 absolute -top-10 left-1/2 -translate-x-1/2 group-hover:text-emerald-400/10 transition-colors">
                   {item.step}
                 </div>
-                <h4 className="text-xl font-bold mb-2 text-cyan-400">{item.title}</h4>
+                <h4 className="text-xl font-bold mb-2 text-emerald-400">{item.title}</h4>
                 <p className="text-slate-400">{item.desc}</p>
               </div>
             ))}
@@ -141,7 +141,7 @@ const DetailedServices: React.FC<DetailedServicesProps> = ({ setView }) => {
             <a 
               href="https://api.whatsapp.com/send?phone=5511914716715"
               target="_blank"
-              className="inline-flex items-center gap-3 bg-white text-[#001B3D] font-bold px-10 py-5 rounded-2xl hover:bg-cyan-400 transition-all text-xl"
+              className="inline-flex items-center gap-3 bg-white text-[#001B3D] font-bold px-10 py-5 rounded-2xl hover:bg-emerald-400 transition-all text-xl"
             >
               Iniciar meu Projeto
               <ArrowRight size={24} />

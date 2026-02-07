@@ -8,13 +8,13 @@ const FAQItem: React.FC<{ q: string; a: string }> = ({ q, a }) => {
     <div className="border-b border-white/10">
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full py-6 flex justify-between items-center text-left hover:text-cyan-500 transition-colors group"
+        className="w-full py-6 flex justify-between items-center text-left hover:text-emerald-500 transition-colors group"
       >
-        <span className="text-lg font-bold uppercase tracking-tight group-hover:text-cyan-400 transition-colors">{q}</span>
-        {isOpen ? <ChevronUp className="text-cyan-500" /> : <ChevronDown className="text-slate-500 group-hover:text-cyan-500" />}
+        <span className="text-lg font-bold uppercase tracking-tight group-hover:text-emerald-400 transition-colors">{q}</span>
+        {isOpen ? <ChevronUp className="text-emerald-500" /> : <ChevronDown className="text-slate-500 group-hover:text-emerald-500" />}
       </button>
       {isOpen && (
-        <div className="pb-6 text-slate-300 leading-relaxed text-base border-l-2 border-cyan-500/30 pl-4 ml-1">
+        <div className="pb-6 text-slate-300 leading-relaxed text-base border-l-2 border-emerald-500/30 pl-4 ml-1">
           {a}
         </div>
       )}

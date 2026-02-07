@@ -8,8 +8,8 @@ interface DetailedAboutProps {
 }
 
 const ValueCard: React.FC<{ icon: React.ReactNode, title: string, text: string }> = ({ icon, title, text }) => (
-  <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-lg hover:border-cyan-500/30 transition-all">
-    <div className="text-cyan-500 mb-6">{icon}</div>
+  <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-lg hover:border-emerald-500/30 transition-all">
+    <div className="text-emerald-500 mb-6">{icon}</div>
     <h3 className="text-xl font-bold text-[#001B3D] mb-3">{title}</h3>
     <p className="text-slate-600 leading-relaxed">{text}</p>
   </div>
@@ -23,7 +23,7 @@ const DetailedAbout: React.FC<DetailedAboutProps> = ({ setView }) => {
         <div className="container mx-auto">
           <button 
             onClick={() => setView('home')}
-            className="flex items-center gap-2 text-[#001B3D] hover:text-cyan-600 transition-colors font-bold text-sm uppercase tracking-widest"
+            className="flex items-center gap-2 text-[#001B3D] hover:text-emerald-600 transition-colors font-bold text-sm uppercase tracking-widest"
           >
             <ArrowLeft size={18} />
             Voltar para Home
@@ -33,12 +33,12 @@ const DetailedAbout: React.FC<DetailedAboutProps> = ({ setView }) => {
 
       {/* Hero Section */}
       <section className="pb-24 pt-12 bg-slate-50 overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-cyan-500/5 -skew-x-12"></div>
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-emerald-500/5 -skew-x-12"></div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl">
-            <span className="text-cyan-600 font-bold uppercase tracking-widest text-sm mb-4 block">Manifesto Peixeweb</span>
+            <span className="text-emerald-600 font-bold uppercase tracking-widest text-sm mb-4 block">Manifesto Peixeweb</span>
             <h1 className="text-4xl md:text-6xl font-extrabold text-[#001B3D] mb-8 font-montserrat leading-tight">
-              Ajudando negócios a nadar contra a corrente da <span className="text-cyan-500 italic">invisibilidade.</span>
+              Ajudando negócios a nadar contra a corrente da <span className="text-emerald-500 italic">invisibilidade.</span>
             </h1>
             <p className="text-xl text-slate-600 leading-relaxed font-light mb-8">
               A Peixeweb não é apenas mais uma agência de marketing. Somos parceiros estratégicos de empreendedores que cansarão de "testar" e agora querem vender.
@@ -60,7 +60,7 @@ const DetailedAbout: React.FC<DetailedAboutProps> = ({ setView }) => {
                <div className="absolute inset-0 bg-gradient-to-t from-[#001B3D]/80 to-transparent"></div>
                <div className="absolute bottom-8 left-8">
                  <div className="flex items-center gap-3 text-white">
-                   <Fish size={40} className="text-cyan-400" />
+                   <Fish size={40} className="text-emerald-400" />
                    <div>
                      <p className="text-sm font-bold uppercase opacity-60">Fundação</p>
                      <p className="text-2xl font-black">2024</p>
@@ -79,11 +79,11 @@ const DetailedAbout: React.FC<DetailedAboutProps> = ({ setView }) => {
             </p>
             <div className="space-y-4">
               <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-xl">
-                <ShieldCheck className="text-green-500" />
+                <ShieldCheck className="text-emerald-500" />
                 <span className="font-bold text-slate-700">Compromisso com o ROI (Retorno)</span>
               </div>
               <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-xl">
-                <Target className="text-red-500" />
+                <Target className="text-blue-500" />
                 <span className="font-bold text-slate-700">Estratégias 100% Data-Driven</span>
               </div>
             </div>
@@ -123,7 +123,7 @@ const DetailedAbout: React.FC<DetailedAboutProps> = ({ setView }) => {
           <div className="bg-[#001B3D] rounded-[50px] p-12 md:p-20 text-center relative overflow-hidden">
              <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
              <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-8 relative z-10">
-               Pronto para dominar o seu <span className="text-cyan-400">mercado?</span>
+               Pronto para dominar o seu <span className="text-emerald-400">mercado?</span>
              </h2>
              <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto relative z-10">
                Não deixe sua empresa à deriva. Vamos construir o motor de vendas que você sempre precisou.
@@ -131,7 +131,7 @@ const DetailedAbout: React.FC<DetailedAboutProps> = ({ setView }) => {
              <a 
                href="https://api.whatsapp.com/send?phone=5511914716715"
                target="_blank"
-               className="inline-flex items-center gap-3 bg-cyan-500 text-[#001B3D] font-bold px-12 py-5 rounded-2xl hover:bg-cyan-400 transition-all text-xl relative z-10 hover:scale-105"
+               className="inline-flex items-center gap-3 bg-emerald-500 text-[#001B3D] font-bold px-12 py-5 rounded-2xl hover:bg-emerald-400 transition-all text-xl relative z-10 hover:scale-105"
              >
                Agendar Consultoria Grátis
                <Rocket size={24} />

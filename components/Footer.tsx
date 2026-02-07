@@ -18,7 +18,7 @@ const Footer: React.FC<{ setView: any }> = () => {
         </div>
 
         <div className="mb-8">
-           <a href="mailto:contato@peixeweb.com.br" className="inline-flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors text-lg font-medium">
+           <a href="mailto:contato@peixeweb.com.br" className="inline-flex items-center gap-2 text-slate-400 hover:text-emerald-400 transition-colors text-lg font-medium">
              <Mail size={20} />
              contato@peixeweb.com.br
            </a>
@@ -27,7 +27,7 @@ const Footer: React.FC<{ setView: any }> = () => {
         <div className="mb-8">
           <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-4">Redes Sociais:</h4>
           <div className="flex justify-center gap-6">
-            <a href="https://www.instagram.com/peixeweb/" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-cyan-500 transition-colors">
+            <a href="https://www.instagram.com/peixeweb/" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-emerald-500 transition-colors">
               <Instagram size={32} />
             </a>
           </div>
